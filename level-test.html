@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Real Estate English Level Test — Free, 15 Questions | English for Real Estate</title>
+  <meta name="description" content="Free Real Estate English level test for agents: 15 practical questions from A1 to C1. Find out your level in 5 minutes and where to start.">
+  <link rel="canonical" href="https://englishforrealestate.com/level-test">
+  <meta property="og:title" content="What’s your Real Estate English level?">
+  <meta property="og:description" content="Free 5-minute test for real estate agents: from A1 to C1.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo" aria-label="English for Real Estate — home">
+      <span class="logo-mark" aria-hidden="true">🔑</span>
+      <span class="logo-text">English<span>for</span>Real Estate</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="vocabulary.html">Vocabulary</a>
+      <a href="terms.html">Terms</a>
+      <a href="phrases.html">Phrases</a>
+      <a href="resources.html">Resources</a>
+      <a href="index.html#app" class="btn btn-small btn-primary nav-cta">Join Waitlist</a>
+    </nav>
+  </div>
+</header>
+
+<main class="test-page">
+  <div class="container test-wrap">
+
+    <!-- Intro -->
+    <section id="test-intro" class="test-card">
+      <span class="tag tag-teal">Free · 5 minutes</span>
+      <h1>What’s Your Real Estate English Level?</h1>
+      <p class="test-lead">Answer 15 practical questions based on real situations with clients — from your first words to complex negotiations. Find out your level and where to start.</p>
+      <ul class="test-facts">
+        <li><strong>15</strong> questions</li>
+        <li><strong>A1–C1</strong> levels</li>
+        <li><strong>Instant</strong> result</li>
+      </ul>
+      <button id="test-start" class="btn btn-primary">Start the Test</button>
+      <p class="test-hint">Don’t worry if you’re a complete beginner — just answer what you can.</p>
+    </section>
+
+    <!-- Quiz -->
+    <section id="test-quiz" class="test-card" hidden>
+      <div class="q-top">
+        <span id="q-count" class="q-count"></span>
+      </div>
+      <div class="q-progress" aria-hidden="true"><div id="q-progress"></div></div>
+      <h2 id="q-text" class="q-text" tabindex="-1"></h2>
+      <div id="q-options" class="q-options"></div>
+      <div class="q-nav">
+        <button id="q-back" type="button" class="btn btn-outline btn-small" hidden>← Back</button>
+        <button id="q-next" type="button" class="btn btn-primary" disabled>Next</button>
+      </div>
+    </section>
+
+    <!-- Result -->
+    <section id="test-result" class="test-card" hidden>
+      <p class="r-label">Your recommended starting level</p>
+      <div class="r-head">
+        <span id="r-badge" class="r-badge"></span>
+        <div>
+          <h2 id="r-name"></h2>
+          <p id="r-score" class="r-score"></p>
+        </div>
+      </div>
+      <p id="r-text" class="r-text"></p>
+      <div id="r-bars" class="r-bars"></div>
+
+      <div class="r-cta">
+        <h3>Get your personal study plan</h3>
+        <p>We’ll email you your result and a step-by-step plan for your level, plus early access to the English for Real Estate app.</p>
+        <form class="signup" data-form="test" novalidate>
+          <input type="hidden" name="level" id="r-level-input">
+          <div class="field-row">
+            <label class="field">
+              <span>Email address</span>
+              <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+            </label>
+            <label class="field">
+              <span>Your native language</span>
+              <select name="language">
+                <option value="">Choose…</option>
+                <option>Russian</option>
+                <option>Turkish</option>
+                <option>Spanish</option>
+                <option>Arabic</option>
+                <option>Portuguese</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent">
+            <span>I agree to receive my study plan, educational resources and updates from English for Real Estate by email. I can unsubscribe at any time. See the <a href="privacy.html">Privacy Policy</a>.</span>
+          </label>
+          <button type="submit" class="btn btn-primary">Send My Study Plan</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <button id="test-retake" type="button" class="btn btn-outline btn-small">↻ Retake the test</button>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-bottom">© 2026 English for Real Estate · <a href="index.html" style="display:inline">Home</a> · <a href="privacy.html" style="display:inline">Privacy Policy</a></div>
+</footer>
+
+<script src="script.js"></script>
+<script src="test.js"></script>
+</body>
+</html>

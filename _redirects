@@ -1,0 +1,3 @@
+# Second domain and www versions point to the main domain
+https://englishforrealestateagents.com/*      https://englishforrealestate.com/:splat  301!
+https://www.englishforrealestateagents.com/*  https://englishforrealestate.com/:splat  301!
