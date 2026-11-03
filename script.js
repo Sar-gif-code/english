@@ -1,6 +1,6 @@
 // Sign-up endpoint: Google Apps Script web app URL that writes rows to the waitlist Google Sheet.
 // While empty, forms run in demo mode and never store or send anything.
-const SHEET_ENDPOINT = "";
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbx_i5BUJMOmWlSvKuXf-nDThOYY3Fvv7wDetm5yGUFNH4vEW2BDdTvu1cwTsYhbfwgr/exec";
 
 // Free A0 flashcards PDF per native language. Empty = not uploaded yet.
 const FLASHCARDS_PDF = {
