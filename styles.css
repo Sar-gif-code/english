@@ -401,3 +401,5 @@ p { margin: 0 0 12px; }
 a.card { text-decoration: none; color: inherit; }
 .ru-levels { max-width: 640px; margin: 0 auto; padding-left: 22px; display: grid; gap: 12px; font-size: 1.05rem; }
 .ru-levels strong { color: var(--coral-dark); }
+.page ul { padding-left: 22px; }
+.page li { margin-bottom: 6px; }
