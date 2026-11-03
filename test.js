@@ -23,11 +23,12 @@ const QUESTIONS = [
 ];
 
 const LEVELS = {
-  A1: { name: "Start", color: "var(--teal)", text: "You’re starting from the basics — perfect. You’ll learn your first words for work: greetings, numbers and prices, property types and rooms." },
-  A2: { name: "Basic", color: "#2BB673", text: "You know the basics. Next step: simple conversations and messages — arranging viewings, describing the area, WhatsApp replies." },
-  B1: { name: "Confident", color: "var(--yellow)", text: "You can communicate. Now let’s make you confident running a viewing on your own, answering questions and writing client emails." },
-  B2: { name: "Professional", color: "var(--coral)", text: "Strong level! Focus on negotiations, handling objections and explaining mortgages and contract terms." },
-  C1: { name: "Pro", color: "#7C5CFF", text: "Excellent! Polish your presentations, complex negotiations and investment and legal vocabulary." }
+  A0: { name: "Foundation", color: "var(--navy)", text: "You’re starting from zero — perfect. You’ll learn English sounds and reading, how to introduce yourself, numbers and prices, and your first real estate words." },
+  A1: { name: "Beginner", color: "var(--teal)", text: "You know a little English. Next: your first words for work — greetings, numbers and prices, property types and rooms." },
+  A2: { name: "Elementary", color: "#2BB673", text: "You know the basics. Next step: simple conversations and messages — arranging viewings, describing the area, WhatsApp replies." },
+  B1: { name: "Intermediate", color: "var(--yellow)", text: "You can communicate. Now let’s make you confident running a viewing on your own, answering questions and writing client emails." },
+  B2: { name: "Upper-Intermediate", color: "var(--coral)", text: "Strong level! Focus on negotiations, handling objections and explaining mortgages and contract terms." },
+  C1: { name: "Advanced", color: "#7C5CFF", text: "Excellent! Polish your presentations, complex negotiations and investment and legal vocabulary." }
 };
 const ORDER = ["A1", "A2", "B1", "B2", "C1"];
 
@@ -97,7 +98,8 @@ function finish() {
   for (let i = 0; i < ORDER.length; i++) {
     if (score[ORDER[i]] >= 2) passed = i; else break;
   }
-  const level = ORDER[Math.min(passed + 1, ORDER.length - 1)];
+  // No correct A1 answers means starting from A0 Foundation.
+  const level = score.A1 === 0 ? "A0" : ORDER[Math.min(passed + 1, ORDER.length - 1)];
   const info = LEVELS[level];
   const total = Object.values(score).reduce((a, b) => a + b, 0);
 

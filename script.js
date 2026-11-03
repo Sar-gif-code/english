@@ -6,7 +6,6 @@ const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbx_i5BUJMOmWlSvK
 const FLASHCARDS_PDF = {
   Russian: "",
   Spanish: "",
-  Arabic: "",
   Turkish: ""
 };
 
