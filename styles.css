@@ -403,3 +403,6 @@ a.card { text-decoration: none; color: inherit; }
 .ru-levels strong { color: var(--coral-dark); }
 .page ul { padding-left: 22px; }
 .page li { margin-bottom: 6px; }
+
+.test-skip { margin-top: 24px; padding: 16px 18px; border-radius: 16px; background: var(--yellow-soft); }
+.test-skip p { margin: 0 0 10px; }
