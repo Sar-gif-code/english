@@ -4,9 +4,9 @@ const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbx_i5BUJMOmWlSvK
 
 // Free A0 flashcards PDF per native language. Empty = not uploaded yet.
 const FLASHCARDS_PDF = {
-  Russian: "",
-  Spanish: "",
-  Turkish: ""
+  Russian: "/downloads/free-flashcards-ru.pdf",
+  Spanish: "/downloads/free-flashcards-es.pdf",
+  Turkish: "/downloads/free-flashcards-tr.pdf"
 };
 
 const RU = document.documentElement.lang === "ru";
