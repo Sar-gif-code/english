@@ -48,11 +48,19 @@ nav.querySelectorAll("a").forEach((a) =>
   })
 );
 
-// Pronunciation via the browser's built-in speech engine
+// Pronunciation: recorded audio (data-audio) when available, otherwise the browser's speech engine
+let currentAudio = null;
 document.querySelectorAll(".listen").forEach((btn) => {
-  if (!("speechSynthesis" in window)) { btn.hidden = true; return; }
+  const file = btn.dataset.audio;
+  if (!file && !("speechSynthesis" in window)) { btn.hidden = true; return; }
   btn.addEventListener("click", () => {
-    speechSynthesis.cancel();
+    if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
+    if (file) {
+      currentAudio = new Audio(file);
+      currentAudio.play().catch(() => {});
+      return;
+    }
     const u = new SpeechSynthesisUtterance(btn.dataset.say);
     u.lang = "en-US";
     u.rate = 0.9;
