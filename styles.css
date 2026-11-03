@@ -388,3 +388,16 @@ p { margin: 0 0 12px; }
   .phrase > .lvl { grid-column: 1 / -1; justify-self: start; }
   .term { padding: 16px; }
 }
+
+/* Language switch, waitlist and Russian landing */
+.main-nav .lang-switch { font-weight: 700; font-size: .85rem; border: 2px solid var(--border); border-radius: 999px; padding: 4px 10px; }
+@media (max-width: 900px) { .main-nav .lang-switch { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; padding: 12px 4px; } }
+.wl-title { margin-top: 14px; }
+.wl-form-title { margin-top: 0; }
+.wl-note { color: var(--muted); }
+.pdf-download { display: grid; gap: 10px; }
+.pdf-download .muted { margin: 0; }
+.ru-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+a.card { text-decoration: none; color: inherit; }
+.ru-levels { max-width: 640px; margin: 0 auto; padding-left: 22px; display: grid; gap: 12px; font-size: 1.05rem; }
+.ru-levels strong { color: var(--coral-dark); }
