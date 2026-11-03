@@ -129,7 +129,10 @@ document.querySelectorAll(".signup").forEach((form) => {
     delete data.consent;
     data.email = value;
     data.form = form.dataset.form;
-    data.source = form.dataset.source || location.pathname;
+    // Traffic source from the link: ?utm_source=instagram or ?src=instagram; otherwise the page path.
+    const params = new URLSearchParams(location.search);
+    const tag = (params.get("utm_source") || params.get("src") || "").trim().toLowerCase().slice(0, 50);
+    data.source = tag || form.dataset.source || location.pathname;
     data.page_lang = RU ? "ru" : "en";
 
     button.disabled = true;
