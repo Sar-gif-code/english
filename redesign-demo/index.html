@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English for Real Estate Agents — Your English Opens Doors</title>
+  <meta name="description" content="English for real estate agents with Mrs. Kami: words, phrases and terms for international clients. Free A0 flashcards. Levels A0–C1.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Archivo:wdth,wght@75..125,400..800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #F6F1E8; --champagne: #E7D9BF; --chocolate: #21160F; --gold: #C9A24B;
+      --kami: #E7B321; --ink: #111111; --muted: #6B5F52; --sand: #B9A88F;
+      --serif: "Bodoni Moda", Georgia, serif; --sans: "Archivo", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { overflow-x: clip; }
+    body { margin: 0; background: var(--ivory); color: var(--ink); font: 400 1.0625rem/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--kami); outline-offset: 3px; }
+    .wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 768px) { .wrap { padding: 0 40px; } }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 999px; font: 600 1rem/1 var(--sans); text-decoration: none; white-space: nowrap; border: 1.5px solid transparent; }
+    .btn-kami { background: var(--kami); color: var(--ink); }
+    .btn-line { border-color: currentColor; }
+    .btn-small { min-height: 42px; padding: 0 18px; font-size: .92rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+    /* Header */
+    .top { position: fixed; inset: 0 0 auto; z-index: 50; transition: color .4s, background .4s; }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 14px; }
+    .brand { font-family: var(--serif); font-size: 1.15rem; text-decoration: none; white-space: nowrap; }
+    .nav { display: none; gap: 28px; font-size: .94rem; }
+    .nav a { text-decoration: none; opacity: .75; } .nav a:hover { opacity: 1; }
+    @media (min-width: 980px) { .nav { display: flex; } }
+    .top.dark { color: var(--ivory); }
+    .right { display: flex; align-items: center; gap: 14px; }
+    .langs { display: flex; gap: 2px; padding: 3px; border-radius: 999px; border: 1px solid currentColor; font: 600 .8rem/1 var(--sans); }
+    .langs a { padding: 6px 9px; border-radius: 999px; text-decoration: none; opacity: .7; }
+    .langs a[aria-current] { background: currentColor; opacity: 1; }
+    .langs a[aria-current] { color: var(--ivory); background: var(--ink); }
+    .top.dark .langs a[aria-current] { color: var(--ink); background: var(--ivory); }
+    @media (max-width: 420px) { .brand { font-size: 1rem; } .right { gap: 8px; } .btn-small { padding: 0 14px; } }
+
+    /* Pinned scenes */
+    .scene { position: relative; }
+    .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+    .tag { position: absolute; right: 12px; bottom: 12px; z-index: 30; font: 600 .72rem/1 var(--sans); padding: 7px 10px; border-radius: 999px; background: rgba(17,17,17,.72); color: #fff; letter-spacing: .02em; }
+
+    /* Scene 1 — Meet Mrs. Kami */
+    #s1 { height: 190svh; }
+    #s1 .stage { display: grid; align-items: center; }
+    .s1-grid { display: grid; gap: 28px; align-items: center; }
+    @media (min-width: 900px) { .s1-grid { grid-template-columns: minmax(0, 640px); } }
+    .h1 { font: 600 .95rem/1.3 var(--sans); letter-spacing: .01em; color: var(--muted); margin: 0 0 18px; }
+    .slogan { font-family: var(--serif); font-weight: 500; font-size: clamp(3rem, 7vw, 6.2rem); line-height: .94; letter-spacing: -.02em; margin: 0; }
+    .s1-sub { color: var(--muted); max-width: 36ch; margin: 22px 0 0; font-size: 1.1rem; }
+    .s1-bg { position: absolute; inset: 0; transform-origin: 62% 40%; }
+    .s1-bg video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+    .s1-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(246,241,232,.92) 0%, rgba(246,241,232,.6) 26%, rgba(246,241,232,0) 46%); }
+    #s1 .wrap { position: relative; }
+    @media (max-width: 899px) {
+      #s1 .stage { align-items: end; padding-bottom: 40px; }
+      .s1-bg video { object-position: 58% 30%; }
+      .s1-bg::after { background: linear-gradient(0deg, rgba(246,241,232,.98) 0%, rgba(246,241,232,.9) 38%, rgba(246,241,232,0) 66%); }
+    }
+
+    /* The key (shared by scenes 1–3) */
+    #key { position: fixed; left: 50%; top: 50%; width: 92px; z-index: 40; pointer-events: none; transform-style: preserve-3d; perspective: 900px; opacity: 0; }
+    @media (max-width: 899px) { #key { width: 70px; } }
+    #key .k3d { transform-style: preserve-3d; position: relative; }
+    #key svg { display: block; width: 100%; height: auto; backface-visibility: visible; }
+    #key .back { position: absolute; inset: 0; transform: translateZ(-4px); filter: brightness(.7); }
+    #key .front { transform: translateZ(4px); filter: drop-shadow(0 0 18px rgba(231,179,33,.45)); }
+
+    /* Scene 2 — The golden key */
+    #s2 { height: 260svh; }
+    #s2 .stage { display: grid; place-items: center; background: radial-gradient(60% 60% at 50% 45%, #fffaf0 0%, var(--ivory) 45%, var(--champagne) 100%); }
+    .s2-kami { position: absolute; inset: 0; background-size: cover; background-position: 50% 30%; filter: blur(14px) saturate(.8); opacity: .35; transform: scale(1.1); }
+    .caption { position: absolute; left: 0; right: 0; bottom: 14vh; text-align: center; font-family: var(--serif); font-size: clamp(1.7rem, 4vw, 3rem); line-height: 1.1; padding: 0 16px; opacity: 0; }
+
+    /* Scene 3 — Unlock the first door */
+    #s3 { height: 330svh; }
+    #s3 .stage { background: linear-gradient(180deg, #EFE6D6, #E2D3B8); perspective: 1400px; }
+    .hall { position: absolute; inset: 0; display: grid; place-items: center; transform-origin: 50% 55%; }
+    .doorway { position: relative; width: min(56vw, 420px); aspect-ratio: 9/16; max-height: 78svh; }
+    @media (max-width: 899px) { .doorway { width: 68vw; } }
+    .light { position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 50%, #fff 0%, #FFF3D6 45%, #F2C96B 100%); border-radius: 4px; }
+    .frame { position: absolute; inset: -18px; border: 18px solid #3A281B; border-bottom: 0; border-radius: 6px 6px 0 0; box-shadow: 0 30px 60px rgba(33,22,15,.25); }
+    .leaf { position: absolute; top: 0; bottom: 0; width: 50%; background: linear-gradient(90deg, #5B3D28, #6E4B32 40%, #5A3C27); transform-style: preserve-3d; }
+    .leaf::before { content: ""; position: absolute; inset: 7% 12%; border: 2px solid rgba(201,162,75,.55); border-radius: 3px; }
+    .leaf.l { left: 0; transform-origin: 0 50%; }
+    .leaf.r { right: 0; transform-origin: 100% 50%; }
+    .plate { position: absolute; left: 50%; top: 22%; transform: translateX(-50%); z-index: 2; width: 74px; height: 44px; border-radius: 4px; display: grid; place-items: center; font-family: var(--serif); font-size: 1.6rem; color: #3A281B; background: linear-gradient(135deg, #F5DD9A, #C9A24B 55%, #8E6B22); box-shadow: 0 4px 10px rgba(0,0,0,.25); }
+    .keyhole { position: absolute; left: 50%; top: 52%; transform: translateX(-50%); z-index: 2; width: 26px; height: 46px; border-radius: 13px; background: linear-gradient(135deg, #F5DD9A, #C9A24B 55%, #8E6B22); display: grid; place-items: center; }
+    .keyhole::after { content: ""; width: 6px; height: 20px; border-radius: 3px; background: #21160F; }
+    .whiteout { position: absolute; inset: 0; background: #FFF8EA; opacity: 0; pointer-events: none; }
+    #s3 .caption { color: var(--ink); z-index: 5; }
+
+    /* Scene 4 — The learning tower */
+    #s4 { height: 300svh; color: var(--ivory); }
+    #s4 .stage { background: radial-gradient(80% 70% at 70% 20%, #3A2618 0%, var(--chocolate) 60%); display: grid; align-items: center; }
+    .s4-grid { display: grid; gap: 28px; align-items: center; }
+    @media (min-width: 900px) { .s4-grid { grid-template-columns: .8fr 1.2fr; gap: 64px; } }
+    .s4-title { font-family: var(--serif); font-weight: 500; font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: 1; margin: 0; }
+    .s4-sub { color: var(--sand); margin: 18px 0 0; max-width: 34ch; }
+    .tower { position: relative; display: flex; flex-direction: column-reverse; gap: 6px; padding-left: 26px; }
+    .shaft { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: rgba(201,162,75,.2); border-radius: 2px; }
+    .car { position: absolute; left: -5px; width: 14px; height: 30px; border-radius: 4px; background: var(--kami); box-shadow: 0 0 18px rgba(231,179,33,.6); }
+    .floor { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 12px; text-decoration: none; background: rgba(255,255,255,.03); border: 1px solid rgba(201,162,75,.16); transition: background .5s, border-color .5s; }
+    @media (max-width: 899px) { .floor { padding: 10px 14px; } }
+    .floor b { font-family: var(--serif); font-size: 1.7rem; font-weight: 600; line-height: 1; color: var(--sand); transition: color .5s; }
+    .floor span { font-size: .95rem; } .floor small { display: block; color: var(--sand); font-size: .84rem; }
+    .floor i { font-style: normal; color: var(--sand); }
+    .floor.lit { background: linear-gradient(90deg, rgba(231,179,33,.18), rgba(231,179,33,.03)); border-color: rgba(231,179,33,.5); }
+    .floor.lit b { color: var(--kami); }
+
+    /* Scene 5 — Unlock the world */
+    #s5 { height: 320svh; color: var(--ivory); }
+    #s5 .stage { background: var(--chocolate); }
+    .city { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1.12); }
+    .city::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(33,22,15,.85), rgba(33,22,15,.15) 60%); }
+    .city-name { position: absolute; left: 0; right: 0; top: 18vh; text-align: center; font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 3vw, 2.2rem); color: var(--ivory); z-index: 2; opacity: 0; }
+    .finale { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; z-index: 3; padding: 0 16px; }
+    .finale h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(2.6rem, 7.6vw, 6.6rem); line-height: .96; margin: 0; opacity: 0; transform: translateY(30px); }
+    .finale .actions { justify-content: center; opacity: 0; }
+
+    /* Plain sections below the film */
+    .plain { padding: 96px 0; }
+    .plain h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; margin: 0; }
+    .links { margin-top: 30px; border-top: 1px solid var(--champagne); }
+    .links a { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 20px 0; border-bottom: 1px solid var(--champagne); text-decoration: none; }
+    .links strong { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; }
+    .links small { color: var(--muted); grid-column: 1; }
+    .links em { grid-row: 1 / span 2; grid-column: 2; align-self: center; font-style: normal; color: var(--gold); font-size: 1.4rem; }
+    .duo { display: grid; gap: 18px; margin-top: 18px; }
+    @media (min-width: 900px) { .duo { grid-template-columns: 1fr 1fr; } }
+    .panel { border-radius: 24px; padding: 36px; min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .panel p { color: var(--muted); max-width: 40ch; }
+    .p-cards { background: var(--champagne); }
+    .p-series { background: var(--chocolate); color: var(--ivory); } .p-series p { color: var(--sand); }
+    footer { background: var(--chocolate); color: var(--sand); padding: 36px 0 48px; font-size: .92rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; } footer a { text-decoration: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scene { height: auto !important; } .stage { position: relative; height: auto; min-height: 100svh; }
+      .caption, .finale h2, .finale .actions, .city:first-child, .city-name:first-of-type { opacity: 1 !important; transform: none !important; }
+      #key { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="/">English for Real Estate</a>
+    <nav class="nav" aria-label="Main"><a href="/vocabulary">Vocabulary</a><a href="/terms">Terms</a><a href="/phrases">Phrases</a><a href="/level-test">Level test</a></nav>
+    <div class="right">
+      <nav class="langs" aria-label="Language"><a href="/" aria-current="page">EN</a><a href="/ru" hreflang="ru" lang="ru">RU</a></nav>
+      <a class="btn btn-kami btn-small" href="/waitlist?utm_source=home">Free flashcards</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Scene 1 -->
+  <section class="scene" id="s1">
+    <div class="stage">
+      <div class="s1-bg" id="arch"><video id="hero" autoplay muted loop playsinline preload="auto" poster="kami-poster.jpg" aria-label="Mrs. Kami in her golden-yellow suit, holding a golden key"><source src="kami-hero-m.webm" type="video/webm" media="(max-width: 899px)"><source src="kami-hero-m.mp4" type="video/mp4" media="(max-width: 899px)"><source src="kami-hero.webm" type="video/webm"><source src="kami-hero.mp4" type="video/mp4"></video></div>
+      <div class="wrap s1-grid">
+        <div class="s1-text">
+          <h1 class="h1">English for real estate agents</h1>
+          <p class="slogan">Your English opens doors.</p>
+          <p class="s1-sub">Learn with Mrs. Kami — forty years of selling homes to clients from all over the world.</p>
+          <div class="actions">
+            <a class="btn btn-kami" href="/waitlist?utm_source=home">Get free flashcards</a>
+            <a class="btn btn-line" href="/level-test">Find your level</a>
+          </div>
+        </div>
+      </div>
+      <span class="tag">Real: I2 + V0 · next: V1</span>
+    </div>
+  </section>
+
+  <!-- Scene 2 -->
+  <section class="scene" id="s2" aria-label="The golden key">
+    <div class="stage">
+      <div class="s2-kami" style="background-image:url('kami-poster.jpg')"></div>
+      <p class="caption" id="cap2">Forty years. Four continents.<br>One key.</p>
+      <span class="tag">Placeholder → video V1 (key leaves her palm)</span>
+    </div>
+  </section>
+
+  <!-- Scene 3 -->
+  <section class="scene" id="s3" aria-label="Unlock the first door">
+    <div class="stage">
+      <div class="hall" id="hall">
+        <div class="doorway" id="doorway">
+          <div class="light"></div>
+          <div class="leaf l" id="leafL"></div>
+          <div class="leaf r" id="leafR"></div>
+          <div class="plate" id="plate">A0</div>
+          <div class="keyhole" id="keyhole"></div>
+          <div class="frame"></div>
+        </div>
+      </div>
+      <div class="whiteout" id="whiteout"></div>
+      <p class="caption" id="cap3">Level A0. Start from zero.</p>
+      <span class="tag">Placeholder → video V2 (door A0)</span>
+    </div>
+  </section>
+
+  <!-- Scene 4 -->
+  <section class="scene" id="s4">
+    <div class="stage">
+      <div class="wrap s4-grid">
+        <div>
+          <h2 class="s4-title">Six floors.<br>One way up.</h2>
+          <p class="s4-sub">Every level is a floor. Start on the ground floor, even if you have never studied English.</p>
+        </div>
+        <div class="tower" id="tower">
+          <span class="shaft"></span><span class="car" id="car"></span>
+          <a class="floor" href="/waitlist?utm_source=home"><b>A0</b><span>Foundation<small>Start from zero</small></span><i>›</i></a>
+          <a class="floor" href="/level-test"><b>A1</b><span>Beginner<small>First phrases with clients</small></span><i>›</i></a>
+          <a class="floor" href="/level-test"><b>A2</b><span>Elementary<small>Viewings and simple messages</small></span><i>›</i></a>
+          <a class="floor" href="/level-test"><b>B1</b><span>Intermediate<small>Run a viewing on your own</small></span><i>›</i></a>
+          <a class="floor" href="/level-test"><b>B2</b><span>Upper-Intermediate<small>Offers, objections, contracts</small></span><i>›</i></a>
+          <a class="floor" href="/level-test"><b>C1</b><span>Advanced<small>Investors and negotiations</small></span><i>›</i></a>
+        </div>
+      </div>
+      <span class="tag">Placeholder → video V3 (tower)</span>
+    </div>
+  </section>
+
+  <!-- Scene 5 -->
+  <section class="scene" id="s5">
+    <div class="stage">
+      <div class="city" style="background-image:url('c1.jpg')"></div>
+      <div class="city" style="background-image:url('c2.jpg')"></div>
+      <div class="city" style="background-image:url('c3.jpg')"></div>
+      <div class="city" style="background-image:url('c4.jpg')"></div>
+      <p class="city-name">Dubai</p><p class="city-name">New York</p><p class="city-name">London</p><p class="city-name">Cyprus</p>
+      <div class="finale">
+        <div>
+          <h2 id="fin">Speak the language.<br>Unlock the world.</h2>
+          <div class="actions" id="finBtns"><a class="btn btn-kami" href="/level-test">Explore your learning path</a><a class="btn btn-line" href="/waitlist?utm_source=home">Get free flashcards</a></div>
+        </div>
+      </div>
+      <span class="tag">Placeholder → videos V4a–d (cities)</span>
+    </div>
+  </section>
+
+  <!-- Plain sections -->
+  <section class="plain">
+    <div class="wrap">
+      <h2>Free real estate English</h2>
+      <nav class="links" aria-label="Free resources">
+        <a href="/vocabulary"><strong>Vocabulary</strong><small>Property types, rooms, location and money</small><em>›</em></a>
+        <a href="/terms"><strong>Terms</strong><small>Professional terminology in plain English</small><em>›</em></a>
+        <a href="/phrases"><strong>Phrases</strong><small>What to say at viewings, calls and follow-ups</small><em>›</em></a>
+        <a href="/level-test"><strong>Level test</strong><small>15 questions, 5 minutes, A0 to C1</small><em>›</em></a>
+      </nav>
+      <div class="duo">
+        <div class="panel p-cards"><h2>Free flashcards</h2><p>12 first words for work, 48 cards. In Russian, Spanish or Turkish.</p><div class="actions"><a class="btn btn-kami" href="/waitlist?utm_source=home">Get free flashcards</a></div></div>
+        <div class="panel p-series"><h2>English with Mrs. Kami</h2><p>Short lessons and real stories from the world of property. On Instagram, TikTok and YouTube.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="key" aria-hidden="true"><div class="k3d" id="k3d">
+  <svg class="back" viewBox="0 0 60 180"><use href="#keyshape"/></svg>
+  <svg class="front" viewBox="0 0 60 180"><use href="#keyshape"/></svg>
+</div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1BF"/><stop offset=".35" stop-color="#E7B321"/><stop offset=".6" stop-color="#FFE38A"/><stop offset="1" stop-color="#A9780F"/></linearGradient>
+    <g id="keyshape">
+      <path d="M30 4 L56 26 L56 58 L4 58 L4 26 Z" fill="url(#g)"/>
+      <path d="M30 14 L46 28 L46 50 L14 50 L14 28 Z" fill="#21160F" opacity=".85"/>
+      <rect x="22" y="30" width="7" height="7" fill="url(#g)"/><rect x="31" y="30" width="7" height="7" fill="url(#g)"/>
+      <rect x="22" y="39" width="7" height="7" fill="url(#g)"/><rect x="31" y="39" width="7" height="7" fill="url(#g)"/>
+      <rect x="25" y="56" width="10" height="112" rx="3" fill="url(#g)"/>
+      <path d="M35 128 h14 v8 h-8 v8 h10 v8 h-16 z" fill="url(#g)"/><path d="M35 160 h10 v8 h-10 z" fill="url(#g)"/>
+    </g>
+  </defs>
+</svg>
+
+<footer><div class="wrap"><span>© 2026 English for Real Estate</span><nav aria-label="Footer"><a href="/vocabulary">Vocabulary</a><a href="/terms">Terms</a><a href="/phrases">Phrases</a><a href="/level-test">Level test</a><a href="/about">About</a><a href="/ru" hreflang="ru">Русский</a><a href="/privacy">Privacy</a></nav></div></footer>
+
+<script>
+(() => {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const $ = (s) => document.querySelector(s);
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));           // progress of p inside [a, b]
+  const ease = (t) => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const prog = (el) => { const r = el.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
+
+  const key = $("#key"), k3d = $("#k3d"), top = $("#top");
+  const floors = [...document.querySelectorAll(".floor")], car = $("#car"), tower = $("#tower");
+  const cities = [...document.querySelectorAll(".city")], names = [...document.querySelectorAll(".city-name")];
+
+  function frame() {
+    const vw = innerWidth, vh = innerHeight, small = vw < 900;
+    const p1 = prog($("#s1")), p2 = prog($("#s2")), p3 = prog($("#s3")), p4 = prog($("#s4")), p5 = prog($("#s5"));
+    const r1 = $("#s1").getBoundingClientRect(), r3 = $("#s3").getBoundingClientRect(), r4 = $("#s4").getBoundingClientRect();
+
+    // Scene 1: slow push-in on Mrs. Kami, headline drifts up
+    $("#arch").style.transform = `scale(${lerp(1, 1.12, p1)})`; $("#arch").style.filter = `blur(${seg(p1, .5, 1) * 10}px)`;
+    $(".s1-text").style.transform = `translateY(${-60 * ease(p1)}px)`;
+    $(".s1-text").style.opacity = 1 - seg(p1, .55, 1);
+
+    // The key: appears in her hand (end of scene 1), floats to centre and spins (scene 2), flies to the keyhole and turns (scene 3)
+    const arch = $("#arch").getBoundingClientRect();
+    const sc = Math.max(vw / 1920, vh / 1080), w = 1920 * sc, hgt = 1080 * sc;
+    const ox = (vw - w) * (small ? .58 : .5), oy = (vh - hgt) * .3;
+    const hand = { x: ox + w * .51, y: arch.top + oy + hgt * .36 };
+    const centre = { x: vw / 2, y: vh * .44 };
+    const hole = $("#keyhole").getBoundingClientRect();
+    const holeP = { x: hole.left + hole.width / 2, y: hole.top + hole.height / 2 - (small ? 40 : 52) };
+    let x = hand.x, y = hand.y, s = .55, ry = 0, rz = 0, op = 0;
+
+    if (r3.top > 0) {                                    // scenes 1–2
+      const lift = seg(p1, .45, 1);                      // leaves the palm
+      op = seg(p1, .55, .7);
+      const t = ease(clamp(lift * .35 + p2 * .65));
+      x = lerp(hand.x, centre.x, t); y = lerp(hand.y, centre.y, t) - Math.sin(t * Math.PI) * 40;
+      s = lerp(.55, small ? 1.5 : 1.9, t);
+      ry = (lift * 120 + p2 * 600);
+      rz = lerp(-18, 0, t);
+      if (r1.bottom < 0) op = 1;
+    } else {                                             // scene 3
+      op = 1 - seg(p3, .62, .72);
+      const t = ease(seg(p3, 0, .32));
+      x = lerp(centre.x, holeP.x, t); y = lerp(centre.y, holeP.y, t);
+      s = lerp(small ? 1.5 : 1.9, small ? .55 : .6, t);
+      ry = lerp(720, 720 + 90, t) % 360;
+      rz = 90 * ease(seg(p3, .36, .5));                  // the turn in the lock
+    }
+    key.style.opacity = op;
+    key.style.transform = `translate(-50%, -50%) translate(${x - vw / 2}px, ${y - vh / 2}px) scale(${s})`;
+    k3d.style.transform = `rotateZ(${rz}deg) rotateY(${ry}deg)`;
+    $("#cap2").style.opacity = seg(p2, .25, .45) * (1 - seg(p2, .8, .95));
+
+    // Scene 3: doors open, camera walks through, light fills the screen
+    const open = ease(seg(p3, .5, .72));
+    $("#leafL").style.transform = `rotateY(${-105 * open}deg)`;
+    $("#leafR").style.transform = `rotateY(${105 * open}deg)`;
+    $("#plate").style.opacity = $("#keyhole").style.opacity = 1 - open;
+    $("#hall").style.transform = `scale(${lerp(1, 4.2, ease(seg(p3, .7, .95)))})`;
+    $("#whiteout").style.opacity = seg(p3, .82, .97);
+    $("#cap3").style.opacity = seg(p3, .5, .62) * (1 - seg(p3, .78, .86));
+
+    // Scene 4: the lift goes up, floors light from A0 to C1
+    const lit = Math.round(seg(p4, .08, .85) * floors.length);
+    floors.forEach((f, i) => f.classList.toggle("lit", i < lit));
+    const tr = tower.getBoundingClientRect(), last = floors[Math.max(0, lit - 1)].getBoundingClientRect();
+    car.style.top = (lit ? last.top - tr.top + last.height / 2 - 15 : tr.height - 30) + "px";
+
+    // Scene 5: cities one after another, then the final line
+    const n = cities.length, cp = seg(p5, 0, .7) * n;
+    cities.forEach((c, i) => { const local = cp - i; const o = clamp(local < 0 ? 0 : local < 1 ? Math.min(local * 3, 1) : 1 - (local - 1) * 3); c.style.opacity = i === n - 1 && local >= 1 ? 1 : o; c.style.transform = `scale(${lerp(1.12, 1, clamp(local))})`; });
+    names.forEach((m, i) => { const local = cp - i; m.style.opacity = clamp(local * 4) * (1 - clamp((local - .7) * 4)); });
+    const fin = seg(p5, .72, .9);
+    $("#fin").style.opacity = fin; $("#fin").style.transform = `translateY(${30 * (1 - fin)}px)`;
+    $("#finBtns").style.opacity = seg(p5, .85, .97);
+
+    // Header colour follows the scene
+    top.classList.toggle("dark", r4.top <= 60 && $("#s5").getBoundingClientRect().bottom > 60);
+  }
+
+  let ticking = false;
+  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; frame(); }); } }, { passive: true });
+  addEventListener("resize", frame);
+  addEventListener("load", frame);
+  frame();
+})();
+</script>
+</body>
+</html>
