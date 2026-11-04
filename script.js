@@ -9,30 +9,56 @@ const FLASHCARDS_PDF = {
   Turkish: "/downloads/free-flashcards-tr.pdf"
 };
 
-const RU = document.documentElement.lang === "ru";
-const T = RU ? {
-  emailEmpty: "Введите email.",
-  emailBad: "Проверьте email, например name@example.com.",
-  consent: "Подтвердите согласие получать письма.",
-  demo: "Форма пока в тестовом режиме: данные не сохраняются.",
-  sending: "Отправляем…",
-  error: "Что-то пошло не так. Попробуйте ещё раз через минуту.",
-  waitlist: "Готово! Вы в списке ожидания курса.",
-  pdf: "Скачать карточки (PDF)",
-  pdfLater: "Карточки пришлём на ваш email, как только они будут готовы."
-} : {
-  emailEmpty: "Please enter your email address.",
-  emailBad: "Please enter a valid email address, e.g. name@example.com.",
-  consent: "Please confirm that you agree to receive emails.",
-  demo: "Demo mode: this form is not connected yet, so nothing was sent or saved.",
-  sending: "Sending…",
-  error: "Something went wrong. Please try again in a moment.",
-  waitlist: "You’re on the waitlist!",
-  guide: "Thank you! You’re subscribed.",
-  test: "Thank you! You’re subscribed.",
-  pdf: "Download the flashcards (PDF)",
-  pdfLater: "We’ll email you the flashcards as soon as they’re ready."
+const LANG = document.documentElement.lang;
+const TEXTS = {
+  en: {
+    emailEmpty: "Please enter your email address.",
+    emailBad: "Please enter a valid email address, e.g. name@example.com.",
+    consent: "Please confirm that you agree to receive emails.",
+    demo: "Demo mode: this form is not connected yet, so nothing was sent or saved.",
+    sending: "Sending…",
+    error: "Something went wrong. Please try again in a moment.",
+    waitlist: "You’re on the waitlist!",
+    guide: "Thank you! You’re subscribed.",
+    test: "Thank you! You’re subscribed.",
+    pdf: "Download the flashcards (PDF)",
+    pdfLater: "We’ll email you the flashcards as soon as they’re ready."
+  },
+  ru: {
+    emailEmpty: "Введите email.",
+    emailBad: "Проверьте email, например name@example.com.",
+    consent: "Подтвердите согласие получать письма.",
+    demo: "Форма пока в тестовом режиме: данные не сохраняются.",
+    sending: "Отправляем…",
+    error: "Что-то пошло не так. Попробуйте ещё раз через минуту.",
+    waitlist: "Готово! Вы в списке ожидания курса.",
+    pdf: "Скачать карточки (PDF)",
+    pdfLater: "Карточки пришлём на ваш email, как только они будут готовы."
+  },
+  tr: {
+    emailEmpty: "E-posta adresinizi girin.",
+    emailBad: "E-postanızı kontrol edin, ör. name@example.com.",
+    consent: "Lütfen e-posta almayı kabul ettiğinizi onaylayın.",
+    demo: "Form şu anda test modunda: veriler kaydedilmiyor.",
+    sending: "Gönderiliyor…",
+    error: "Bir sorun oluştu. Lütfen bir dakika sonra tekrar deneyin.",
+    waitlist: "Tamam! Kurs bekleme listesindesiniz.",
+    pdf: "Kartları indir (PDF)",
+    pdfLater: "Kartlar hazır olur olmaz e-postanıza göndereceğiz."
+  },
+  es: {
+    emailEmpty: "Escribe tu email.",
+    emailBad: "Revisa tu email, por ejemplo name@example.com.",
+    consent: "Confirma que aceptas recibir correos.",
+    demo: "El formulario está en modo de prueba: los datos no se guardan.",
+    sending: "Enviando…",
+    error: "Algo salió mal. Inténtalo de nuevo en un minuto.",
+    waitlist: "¡Listo! Ya estás en la lista de espera del curso.",
+    pdf: "Descargar las tarjetas (PDF)",
+    pdfLater: "Te enviaremos las tarjetas por email en cuanto estén listas."
+  }
 };
+const T = TEXTS[LANG] || TEXTS.en;
 
 // Mobile menu
 const toggle = document.querySelector(".menu-toggle");
@@ -141,7 +167,7 @@ document.querySelectorAll(".signup").forEach((form) => {
     const params = new URLSearchParams(location.search);
     const tag = (params.get("utm_source") || params.get("src") || "").trim().toLowerCase().slice(0, 50);
     data.source = tag || form.dataset.source || location.pathname;
-    data.page_lang = RU ? "ru" : "en";
+    data.page_lang = TEXTS[LANG] ? LANG : "en";
 
     button.disabled = true;
     button.textContent = T.sending;
