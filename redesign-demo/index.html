@@ -52,7 +52,20 @@
     .tag { position: absolute; right: 12px; bottom: 12px; z-index: 30; font: 600 .72rem/1 var(--sans); padding: 7px 10px; border-radius: 999px; background: rgba(17,17,17,.72); color: #fff; letter-spacing: .02em; }
 
     /* Scene 1 — Meet Mrs. Kami */
-    #s1 { height: 820svh; }
+    #s1 { height: 960svh; }
+    .inside { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; padding: 76px 16px 24px; opacity: 0; pointer-events: none; }
+    .inside.on { pointer-events: auto; }
+    .inside-in { width: min(560px, 100%); text-align: center; }
+    .inside-title { font-family: var(--serif); font-weight: 500; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1; margin: 0; color: var(--ink); }
+    .inside-sub { color: var(--muted); margin: 14px auto 0; max-width: 38ch; }
+    .inside .tower { margin-top: 22px; text-align: left; }
+    .inside .floor { opacity: .55; transition: opacity .4s, background .4s, border-color .4s; background: rgba(255,255,255,.5); border-color: rgba(201,162,75,.35); color: var(--ink); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    .inside .floor b, .inside .floor i, .inside .floor small { color: var(--muted); }
+    .inside .floor span { color: var(--ink); font-weight: 600; } .inside .floor small { font-weight: 400; }
+    .inside .floor.lit { opacity: 1; background: rgba(255,250,235,.92); border-color: var(--kami); box-shadow: 0 8px 24px rgba(201,162,75,.25); }
+    .inside .floor.lit b { color: #B07F0B; }
+    .inside .shaft { background: rgba(201,162,75,.3); }
+    @media (max-width: 899px) { .inside .floor { padding: 8px 12px; } .inside .floor b { font-size: 1.35rem; } .inside-title { font-size: 2rem; } .inside-sub { font-size: .95rem; } }
     #s1 .whiteout { z-index: 4; }
     @media (min-width: 900px) { #s1 .caption { top: auto; bottom: 12vh; left: 6vw; right: auto; text-align: left; max-width: 22ch; } }
     #cap3 { z-index: 3; color: var(--ivory); text-shadow: 0 2px 30px rgba(33,22,15,.6); }
@@ -181,7 +194,7 @@
         <div class="s1-text">
           <h1 class="h1">English for real estate agents</h1>
           <p class="slogan">Your English opens doors.</p>
-          <p class="s1-sub">Learn with Mrs. Kami — forty years of selling homes to clients from all over the world.</p>
+          <p class="s1-sub">Learn with Mrs. Kami — the English you need with international clients.</p>
           <div class="actions">
             <a class="btn btn-kami" href="/waitlist?utm_source=home">Get free flashcards</a>
             <a class="btn btn-line" href="/level-test">Find your level</a>
@@ -189,21 +202,11 @@
         </div>
       </div>
       <canvas id="film" aria-hidden="true"></canvas>
-      <p class="caption" id="cap2">Forty years. Four continents.<br>One key.</p>
-      <p class="caption" id="cap3">Level A0. Start from zero.</p>
-      <div class="whiteout" id="whiteout"></div>
-      <span class="tag">Real: I2 + V0 + V1 + I4 + V2 · next: V3 (tower)</span>
-    </div>
-  </section>
-
-  <!-- Scene 4 -->
-  <section class="scene" id="s4">
-    <div class="stage">
-      <div class="wrap s4-grid">
-        <div>
-          <h2 class="s4-title">Six floors.<br>One way up.</h2>
-          <p class="s4-sub">Every level is a floor. Start on the ground floor, even if you have never studied English.</p>
-        </div>
+      <p class="caption" id="cap2">One key.<br>Every door.</p>
+      <div class="inside" id="inside">
+        <div class="inside-in">
+          <h2 class="inside-title">Six levels.<br>Start at A0.</h2>
+          <p class="inside-sub">Every level is a door. The first one is open, even if you have never studied English.</p>
         <div class="tower" id="tower">
           <span class="shaft"></span><span class="car" id="car"></span>
           <a class="floor" href="/waitlist?utm_source=home"><b>A0</b><span>Foundation<small>Start from zero</small></span><i>›</i></a>
@@ -214,7 +217,10 @@
           <a class="floor" href="/level-test"><b>C1</b><span>Advanced<small>Investors and negotiations</small></span><i>›</i></a>
         </div>
       </div>
-      <span class="tag">Placeholder → video V3 (tower)</span>
+        </div>
+      </div>
+      <div class="whiteout" id="whiteout"></div>
+      <span class="tag">Real: I2 + V0 + V1 + I4 + V2 · next: cities</span>
     </div>
   </section>
 
@@ -267,7 +273,7 @@
   const prog = (el) => { const r = el.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
 
   const top = $("#top");
-  const floors = [...document.querySelectorAll(".floor")], car = $("#car"), tower = $("#tower");
+  const floors = [...document.querySelectorAll(".floor")], car = $("#car"), tower = $("#tower"), inside = $("#inside");
   const cities = [...document.querySelectorAll(".city")], names = [...document.querySelectorAll(".city-name")];
 
   // V1 (key leaves her hand) and V2 (door A0) as frame sequences on one canvas — smooth scrubbing on every phone
@@ -298,8 +304,7 @@
   addEventListener("load", preload);
 
   function frame() {
-    const p1 = prog($("#s1")), p4 = prog($("#s4")), p5 = prog($("#s5"));
-    const r4 = $("#s4").getBoundingClientRect();
+    const p1 = prog($("#s1")), p5 = prog($("#s5"));
 
     // One continuous shot: live loop (V0) → V1, the key leaves her hand → dissolve → V2, the key opens door A0 → light
     $("#arch").style.transform = `scale(${lerp(1, 1.04, seg(p1, 0, .09))})`;
@@ -311,18 +316,19 @@
 
     let blur = 0;
     if (p1 < .51) { draw(0, seg(p1, .09, .48)); blur = seg(p1, .48, .51) * 12; }
-    else { draw(1, seg(p1, .54, .93)); blur = (1 - seg(p1, .51, .55)) * 12; }
+    else { draw(1, seg(p1, .54, .8)); blur = (1 - seg(p1, .51, .55)) * 12 + seg(p1, .8, .86) * 6; }
     film.style.filter = `blur(${blur}px)`;
 
     $("#cap2").style.opacity = seg(p1, .33, .39) * (1 - seg(p1, .46, .5));
-    $("#cap3").style.opacity = seg(p1, .8, .86) * (1 - seg(p1, .93, .97));
-    $("#whiteout").style.opacity = seg(p1, .93, 1);
+    // Inside the open door: the six levels appear and light up from A0
+    $("#whiteout").style.opacity = seg(p1, .79, .86) * .55;
+    const inn = seg(p1, .81, .86);
+    inside.style.opacity = inn; inside.style.transform = `scale(${lerp(1.06, 1, inn)})`; inside.classList.toggle("on", inn > .5);
 
-    // Scene 4: the lift goes up, floors light from A0 to C1
-    const lit = Math.round(seg(p4, .08, .85) * floors.length);
+    const lit = Math.max(inn > .5 ? 1 : 0, Math.round(seg(p1, .86, .98) * floors.length));
     floors.forEach((f, i) => f.classList.toggle("lit", i < lit));
-    const tr = tower.getBoundingClientRect(), last = floors[Math.max(0, lit - 1)].getBoundingClientRect();
-    car.style.top = (lit ? last.top - tr.top + last.height / 2 - 15 : tr.height - 30) + "px";
+    const tr = tower.getBoundingClientRect(), lf = floors[Math.max(0, lit - 1)].getBoundingClientRect();
+    car.style.top = (lit ? lf.top - tr.top + lf.height / 2 - 15 : tr.height - 30) + "px";
 
     // Scene 5: cities one after another, then the final line
     const n = cities.length, cp = seg(p5, 0, .7) * n;
@@ -333,7 +339,7 @@
     $("#finBtns").style.opacity = seg(p5, .85, .97);
 
     // Header colour follows the scene
-    top.classList.toggle("dark", r4.top <= 60 && $("#s5").getBoundingClientRect().bottom > 60);
+    const r5 = $("#s5").getBoundingClientRect(); top.classList.toggle("dark", r5.top <= 60 && r5.bottom > 60);
   }
 
   let ticking = false;
