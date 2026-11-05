@@ -24,6 +24,22 @@
   levels.forEach((l) => { const r = l.querySelector(".row"); r.addEventListener("click", () => choose(+l.dataset.i)); if (hover) r.addEventListener("mouseenter", () => choose(+l.dataset.i)); });
   choose(0);
 
+  // Phones and tablets: tapping a floor opens a card with the level right on the building
+  const pop = $("#pop"), house = $("#house"), single = matchMedia("(max-width: 959px)");
+  function openPop(i) {
+    if (!pop || !single.matches) return;
+    const l = levels.find((x) => +x.dataset.i === i), s = spots.find((x) => +x.dataset.i === i);
+    const badge = l.querySelector(".badge").outerHTML, name = l.querySelector(".name").textContent;
+    const can = l.querySelector(".can").textContent, topics = l.querySelector(".topics").textContent, link = l.querySelector(".more a");
+    pop.innerHTML = `<button class="pop-x" type="button" aria-label="Close">×</button><div class="pop-head">${badge}<b>${name}</b></div><p class="can">${can}</p><p class="topics">${topics}</p>` + (link ? link.outerHTML : `<a class="btn btn-kami btn-small" href="/level-test">Check your level</a>`);
+    const pb = pop.querySelector(".badge"); pb.style.setProperty("--lc", getComputedStyle(l).getPropertyValue("--lc")); if (i >= 3) pb.style.color = "var(--ivory)";
+    pop.hidden = false;
+    const top = s.offsetTop, h = s.offsetHeight, H = house.offsetHeight, ph = pop.offsetHeight;
+    pop.style.top = (top + h / 2 > H / 2 ? Math.max(0, top - ph - 8) : Math.min(H - ph, top + h + 8)) + "px";
+    pop.querySelector(".pop-x").addEventListener("click", () => (pop.hidden = true));
+  }
+  spots.forEach((s) => s.addEventListener("click", () => openPop(+s.dataset.i)));
+
   // The phone screen: the listen button really speaks the word
   const say = $(".scr-listen");
   if (say && "speechSynthesis" in window) say.addEventListener("click", () => {
