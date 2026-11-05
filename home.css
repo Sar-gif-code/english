@@ -47,10 +47,8 @@ a { color: inherit; }
 @media (max-width: 479px) { .top .btn-small { display: none; } }
 .top.solid { background: rgba(246,241,232,.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 var(--champagne); }
 
-/* The film: one pinned scene — Mrs. Kami → the key → door A0 opens into light */
-#film-scene { position: relative; height: 720svh; }
-.stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.hero { position: absolute; inset: 0; display: grid; align-items: center; }
+/* Hero: Mrs. Kami, full screen */
+.hero { position: relative; height: 100svh; min-height: 560px; display: grid; align-items: center; overflow: hidden; }
 .hero-bg { position: absolute; inset: 0; transform-origin: 62% 40%; }
 .hero-bg video, .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(246,241,232,.92) 0%, rgba(246,241,232,.6) 26%, rgba(246,241,232,0) 46%); }
@@ -63,46 +61,31 @@ a { color: inherit; }
   .hero-bg video, .hero-bg img { object-position: 58% 30%; }
   .hero-bg::after { background: linear-gradient(0deg, rgba(246,241,232,.97) 0%, rgba(246,241,232,.88) 32%, rgba(246,241,232,0) 54%); }
 }
-#film { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
-.caption { position: absolute; left: 0; right: 0; top: 15vh; z-index: 3; margin: 0; padding: 0 16px; text-align: center; font-family: var(--serif); font-weight: 650; font-size: clamp(1.7rem, 4vw, 3rem); line-height: 1.1; color: var(--ink); text-shadow: 0 2px 24px rgba(246,241,232,.9); opacity: 0; }
-@media (min-width: 900px) { .caption { top: auto; bottom: 12vh; left: 6vw; right: auto; text-align: left; max-width: 22ch; } }
 
-#light { position: absolute; inset: 0; z-index: 4; background: var(--ivory); opacity: 0; pointer-events: none; }
-/* Without motion (reduced motion or no script): a calm page */
-html:not(.motion) #film-scene { height: auto; }
-html:not(.motion) .stage { position: relative; height: auto; }
-html:not(.motion) .hero { position: relative; min-height: 100svh; }
-html:not(.motion) #film, html:not(.motion) .caption, html:not(.motion) #light { display: none; }
-
-/* The six levels: a calm, readable block right after the door opens */
-.levels { position: relative; z-index: 2; background: var(--ivory); padding: 40px 0 110px; }
-.motion .levels { margin-top: -45svh; }
-.levels-head { max-width: 640px; }
+/* The six levels: all visible at once, a golden ladder from A0 to C1 */
+.levels { background: var(--ivory); padding: 100px 0 110px; }
+.levels-head { max-width: 680px; }
 .levels h2 { font-family: var(--serif); font-weight: 650; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: .98; letter-spacing: -.02em; margin: 0; }
-.levels-sub { color: var(--muted); font-size: 1.1rem; margin: 18px 0 0; }
-.grid { display: grid; gap: 14px; margin-top: 44px; align-items: start; }
-@media (min-width: 700px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
-.floor { display: block; border-radius: 20px; background: #FFFCF5; border: 1.5px solid var(--champagne); transition: border-color .25s, box-shadow .25s; }
-.floor:hover, .floor[open] { border-color: var(--kami); box-shadow: 0 14px 34px rgba(201,162,75,.18); }
-.floor summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 22px 22px; min-height: 108px; }
-.floor summary::-webkit-details-marker { display: none; }
-.floor b { font-family: var(--serif); font-size: 2.6rem; font-weight: 650; line-height: 1; color: #A8780A; min-width: 1.6em; }
-.floor span { font-weight: 650; font-size: 1.15rem; line-height: 1.3; }
-.floor small { display: block; font-weight: 400; color: var(--muted); font-size: .98rem; margin-top: 2px; }
-.floor i { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--champagne); font-style: normal; font-size: 1.3rem; color: var(--ink); transition: transform .3s, background .3s; }
-.floor[open] i { transform: rotate(45deg); background: var(--kami); border-color: var(--kami); }
-.floor.start { background: var(--kami); border-color: var(--kami); }
-.floor.start b { color: var(--ink); } .floor.start small { color: rgba(17,17,17,.75); } .floor.start i { border-color: rgba(17,17,17,.3); }
-.floor.start[open] i { background: var(--ivory); border-color: var(--ivory); }
-.more { padding: 0 22px 22px; font-size: 1rem; }
-.more p { margin: 0 0 8px; } .more .topics { color: var(--muted); font-size: .95rem; margin-bottom: 16px; }
-.floor.start .more .topics { color: rgba(17,17,17,.75); }
-.floor.start .btn-kami { background: var(--ink); color: var(--ivory); }
-@media (max-width: 699px) { .floor summary { padding: 18px; gap: 14px; } .floor b { font-size: 2.1rem; } .more { padding: 0 18px 18px; } }
+.levels-sub { color: var(--muted); font-size: 1.12rem; margin: 18px 0 0; max-width: 46ch; }
+.ladder { list-style: none; padding: 0; margin: 48px 0 0; display: grid; gap: 16px; }
+@media (min-width: 700px) { .ladder { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .ladder { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+.level { --lc: var(--kami); position: relative; background: #FFFCF5; border: 1.5px solid var(--champagne); border-top: 6px solid var(--lc); border-radius: 20px; padding: 26px 24px 26px; }
+.level:nth-child(1) { --lc: #E7B321; } .level:nth-child(2) { --lc: #D9A12A; } .level:nth-child(3) { --lc: #C48A2C; }
+.level:nth-child(4) { --lc: #A9732D; } .level:nth-child(5) { --lc: #7E5528; } .level:nth-child(6) { --lc: #21160F; }
+.badge { display: inline-grid; place-items: center; min-width: 64px; height: 64px; padding: 0 12px; border-radius: 16px; background: var(--lc); color: var(--ink); font-family: var(--serif); font-weight: 650; font-size: 1.9rem; line-height: 1; }
+.level:nth-child(n+4) .badge { color: var(--ivory); }
+.level h3 { font-family: var(--serif); font-weight: 650; font-size: 1.6rem; line-height: 1.15; margin: 18px 0 8px; }
+.level .can { font-weight: 600; margin: 0 0 10px; }
+.level .topics { color: var(--muted); font-size: .98rem; margin: 0; }
+.level .btn { margin-top: 20px; }
+.level.start { background: #FFF3CF; border-color: var(--kami); border-top-color: var(--kami); box-shadow: 0 14px 34px rgba(201,162,75,.2); }
+.levels .actions { margin-top: 36px; }
+@media (max-width: 699px) { .levels { padding: 72px 0 80px; } .level { padding: 22px 20px; } .badge { min-width: 56px; height: 56px; font-size: 1.6rem; } }
 
-/* Scene: unlock the world */
-#world { position: relative; height: 320svh; color: var(--ivory); }
+/* Scene: unlock the world (pinned while the cities change) */
+.stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+#world { position: relative; height: 260svh; color: var(--ivory); }
 #world .stage { background: var(--chocolate); }
 html:not(.motion) #world .stage { height: 100svh; }
 .city { position: absolute; inset: 0; opacity: 0; transform: scale(1.12); }

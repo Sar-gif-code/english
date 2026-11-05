@@ -76,34 +76,25 @@
 </nav>
 
 <main>
-  <section id="film-scene" aria-label="Meet Mrs. Kami">
-    <div class="stage">
-      <div class="hero">
-        <div class="hero-bg">
-          <video id="hero" autoplay muted playsinline preload="auto" poster="/assets/home/kami-poster.jpg" aria-label="Mrs. Kami in her golden-yellow suit, holding a golden house key">
-            <source src="/assets/home/kami-hero-m.webm" type="video/webm" media="(max-width: 899px)">
-            <source src="/assets/home/kami-hero-m.mp4" type="video/mp4" media="(max-width: 899px)">
-            <source src="/assets/home/kami-hero.webm" type="video/webm">
-            <source src="/assets/home/kami-hero.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="wrap">
-          <div class="hero-text">
-            <h1 class="h1">English for real estate agents</h1>
-            <p class="slogan">Your English opens doors.</p>
-            <p class="hero-sub">Learn with Mrs. Kami — the English you need with international clients.</p>
-            <div class="actions">
-              <a class="btn btn-kami" href="/waitlist?utm_source=home">Get free flashcards</a>
-              <a class="btn btn-line" href="/level-test">Find your level</a>
-            </div>
-          </div>
+  <section class="hero" id="hero-scene" aria-label="Meet Mrs. Kami">
+    <div class="hero-bg">
+      <video id="hero" autoplay muted playsinline preload="auto" poster="/assets/home/kami-poster.jpg" aria-label="Mrs. Kami in her golden-yellow suit, holding a golden house key">
+        <source src="/assets/home/kami-hero-m.webm" type="video/webm" media="(max-width: 899px)">
+        <source src="/assets/home/kami-hero-m.mp4" type="video/mp4" media="(max-width: 899px)">
+        <source src="/assets/home/kami-hero.webm" type="video/webm">
+        <source src="/assets/home/kami-hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="wrap">
+      <div class="hero-text">
+        <h1 class="h1">English for real estate agents</h1>
+        <p class="slogan">Your English opens doors.</p>
+        <p class="hero-sub">Learn with Mrs. Kami — the English you need with international clients.</p>
+        <div class="actions">
+          <a class="btn btn-kami" href="/waitlist?utm_source=home">Get free flashcards</a>
+          <a class="btn btn-line" href="/level-test">Find your level</a>
         </div>
       </div>
-
-      <canvas id="film" aria-hidden="true"></canvas>
-      <p class="caption" id="cap-key" aria-hidden="true">One key.<br>Every door.</p>
-
-      <div id="light" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -111,16 +102,48 @@
     <div class="wrap">
       <div class="levels-head">
         <h2 id="levels-title">Six levels.<br>Start at A0.</h2>
-        <p class="levels-sub">Tap a level to see what you will learn.</p>
+        <p class="levels-sub">From your first words to negotiations with investors. Every level teaches the English you need at work.</p>
       </div>
-      <div class="grid">
-        <details class="floor start"><summary><b>A0</b><span>Foundation<small>Start from zero</small></span><i aria-hidden="true">+</i></summary><div class="more"><p>Start from zero, even if you’ve never studied English.</p><p class="topics">English sounds and reading · introducing yourself · numbers and prices · first real estate words</p><a class="btn btn-kami btn-small" href="/waitlist?utm_source=home-levels">Get free A0 flashcards</a></div></details>
-        <details class="floor"><summary><b>A1</b><span>Beginner<small>First phrases with clients</small></span><i aria-hidden="true">+</i></summary><div class="more"><p>Talk about properties in simple sentences.</p><p class="topics">Greetings · numbers and prices · property types · rooms</p><a class="btn btn-kami btn-small" href="/level-test">Check your level</a></div></details>
-        <details class="floor"><summary><b>A2</b><span>Elementary<small>Viewings and simple messages</small></span><i aria-hidden="true">+</i></summary><div class="more"><p>Handle simple conversations and messages with clients.</p><p class="topics">Arranging viewings · describing the area · WhatsApp messages</p><a class="btn btn-kami btn-small" href="/level-test">Check your level</a></div></details>
-        <details class="floor"><summary><b>B1</b><span>Intermediate<small>Run a viewing on your own</small></span><i aria-hidden="true">+</i></summary><div class="more"><p>Run a property viewing on your own.</p><p class="topics">Showing a property · answering questions · client emails</p><a class="btn btn-kami btn-small" href="/level-test">Check your level</a></div></details>
-        <details class="floor"><summary><b>B2</b><span>Upper-Intermediate<small>Offers, objections, contracts</small></span><i aria-hidden="true">+</i></summary><div class="more"><p>Negotiate and explain the details of a deal.</p><p class="topics">Prices and offers · objections · mortgages · contract terms</p><a class="btn btn-kami btn-small" href="/level-test">Check your level</a></div></details>
-        <details class="floor"><summary><b>C1</b><span>Advanced<small>Investors and negotiations</small></span><i aria-hidden="true">+</i></summary><div class="more"><p>Work freely on the international market.</p><p class="topics">Presentations · complex negotiations · investment and legal topics</p><a class="btn btn-kami btn-small" href="/level-test">Check your level</a></div></details>
-      </div>
+      <ol class="ladder">
+        <li class="level start">
+          <span class="badge">A0</span>
+          <h3>Foundation</h3>
+          <p class="can">Start from zero, even if you’ve never studied English.</p>
+          <p class="topics">English sounds and reading · introducing yourself · numbers and prices · first real estate words</p>
+          <a class="btn btn-kami btn-small" href="/waitlist?utm_source=home-levels">Get free A0 flashcards</a>
+        </li>
+        <li class="level">
+          <span class="badge">A1</span>
+          <h3>Beginner</h3>
+          <p class="can">Talk about properties in simple sentences.</p>
+          <p class="topics">Greetings · numbers and prices · property types · rooms</p>
+        </li>
+        <li class="level">
+          <span class="badge">A2</span>
+          <h3>Elementary</h3>
+          <p class="can">Handle simple conversations and messages with clients.</p>
+          <p class="topics">Arranging viewings · describing the area · WhatsApp messages</p>
+        </li>
+        <li class="level">
+          <span class="badge">B1</span>
+          <h3>Intermediate</h3>
+          <p class="can">Run a property viewing on your own.</p>
+          <p class="topics">Showing a property · answering questions · client emails</p>
+        </li>
+        <li class="level">
+          <span class="badge">B2</span>
+          <h3>Upper-Intermediate</h3>
+          <p class="can">Negotiate and explain the details of a deal.</p>
+          <p class="topics">Prices and offers · objections · mortgages · contract terms</p>
+        </li>
+        <li class="level">
+          <span class="badge">C1</span>
+          <h3>Advanced</h3>
+          <p class="can">Work freely on the international market.</p>
+          <p class="topics">Presentations · complex negotiations · investment and legal topics</p>
+        </li>
+      </ol>
+      <div class="actions"><a class="btn btn-line" href="/level-test">Find your level</a></div>
     </div>
   </section>
 
