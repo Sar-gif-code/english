@@ -21,6 +21,17 @@
   addEventListener("scroll", headerState, { passive: true });
   headerState();
 
+  // The house: one floor per level. Hover or tap a floor (or a row) and both light up together
+  const spots = [...document.querySelectorAll(".spot")], levels = [...document.querySelectorAll(".level")];
+  function choose(i) {
+    spots.forEach((s) => s.classList.toggle("on", +s.dataset.i === i));
+    levels.forEach((l) => { const on = +l.dataset.i === i; l.classList.toggle("on", on); l.querySelector(".row").setAttribute("aria-expanded", on); });
+  }
+  const hover = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  spots.forEach((s) => { s.addEventListener("click", () => choose(+s.dataset.i)); if (hover) s.addEventListener("mouseenter", () => choose(+s.dataset.i)); });
+  levels.forEach((l) => { const r = l.querySelector(".row"); r.addEventListener("click", () => choose(+l.dataset.i)); if (hover) r.addEventListener("mouseenter", () => choose(+l.dataset.i)); });
+  choose(0);
+
   const motion = document.documentElement.classList.contains("motion");
   const hero = $("#hero");
   if (!motion) { if (hero) { hero.removeAttribute("autoplay"); hero.pause(); } return; }
