@@ -114,6 +114,10 @@
   let ticking = false;
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; frame(); }); } }, { passive: true });
   addEventListener("resize", () => { size(); frame(); });
-  addEventListener("load", () => { preload(); frame(); });
+  // frames load after the first screen: on the first scroll or after a short pause, whichever comes first
+  let started = false;
+  const start = () => { if (started) return; started = true; preload(); };
+  addEventListener("scroll", start, { once: true, passive: true });
+  addEventListener("load", () => { setTimeout(start, 2500); frame(); });
   frame();
 })();
