@@ -71,10 +71,11 @@
 - Главная (решения Сары 5 ноября), сверху вниз:
   1. Mrs. Kami во весь экран (видео V0). H1 «English for / Real Estate» (Real Estate — золотисто-жёлтым), подзаголовок «Professional English for real estate agents. Your key to an international career.», кнопки «Find your level» → /level-test и «App» → #app, строка со значком приложения «The English for Real Estate App — coming soon» → #app.
   2. «Six levels. From Zero to Advanced» (одна строка на ноутбуке): дом на 6 этажей, этаж = уровень (1-й A0 … 6-й C1); наведение/нажатие подсвечивает этаж и строку указателя. Под ним «Not sure about your level?» + крупная кнопка «Take the free 5-minute level test».
-  3. Бегущая строка городов (медленная, заглавные буквы, жёлтые точки).
   4. «Free real estate English» (Vocabulary, Terms, Phrases, Level test), Free flashcards, English with Mrs. Kami (ссылки на соцсети — ждём от Сары).
   5. `#app`: телефон (`assets/home/phone.*`) с живым экраном карточки A0, «Coming 2027», 5 пунктов первого релиза, форма «Join the waitlist» (те же поля и таблица, что /waitlist; source `home-app`; после отправки — PDF).
-  6. Автор, футер.
+  6. Автор.
+  7. Финал `#finale`: золотой ключ (`assets/home/key.*`, крутится при прокрутке) + «Your key to an international career» + кнопки; справа вращающийся золотой глобус из точек (`globe.js`, без библиотек; города New York, Los Angeles, Miami, London, Istanbul, Dubai; можно крутить мышкой/пальцем). Бегущая строка городов убрана по просьбе Сары.
+  8. Футер.
   Пункт меню и кнопка в шапке — «App» (→ #app). About убран из меню, остался в футере. Сцена городов с фото и фильм с ключом/дверью **убраны**, не возвращать.
 - Плавность: города меняются с инерцией (lerp), Lenis 1.1.13 для колёсика мыши. Если у человека включено «уменьшить движение» (`prefers-reduced-motion`), показывается спокойная версия без анимации — её не ломать.
 

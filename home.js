@@ -83,6 +83,22 @@
     history.replaceState(null, "", a.getAttribute("href"));
   }));
 
+  // The golden key turns as you scroll through the finale
+  const key = $("#key");
+  if (key && document.documentElement.classList.contains("motion")) {
+    let ticking = false;
+    const turn = () => {
+      ticking = false;
+      const r = key.getBoundingClientRect(), mid = r.top + r.height / 2;
+      // one full turn while the key rises to the middle of the screen; face-on from there
+      const t = Math.min(1, Math.max(0, (innerHeight - mid) / (innerHeight * .5)));
+      const e = 1 - Math.pow(1 - t, 3);
+      key.style.transform = `perspective(700px) translateY(${(1 - e) * 40}px) rotate(${(1 - e) * -18}deg) rotateY(${e * 360}deg)`;
+    };
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(turn); } }, { passive: true });
+    turn();
+  }
+
   const hero = $("#hero");
   if (!document.documentElement.classList.contains("motion") && hero) { hero.removeAttribute("autoplay"); hero.pause(); }
 })();

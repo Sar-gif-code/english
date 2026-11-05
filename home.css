@@ -110,19 +110,6 @@ a { color: inherit; }
   .more { padding: 0 16px 0 78px; } .level.on .more { padding-bottom: 16px; }
   .spot span { font-size: .85rem; padding: 7px 11px; }
 }
-/* Cities: a slow ticker on a dark band */
-.cities { background: var(--chocolate); color: var(--ivory); padding: 26px 0; overflow: hidden; }
-.track { display: flex; width: max-content; }
-.run { display: flex; align-items: center; flex-shrink: 0; }
-.run span { font: 700 clamp(1.05rem, 1.8vw, 1.45rem)/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
-.run i { width: 10px; height: 10px; border-radius: 50%; background: var(--kami); margin: 0 clamp(22px, 3vw, 40px); flex-shrink: 0; }
-.motion .track { animation: ticker 70s linear infinite; }
-.cities:hover .track { animation-play-state: paused; }
-@keyframes ticker { to { transform: translateX(-50%); } }
-html:not(.motion) .track { width: auto; flex-wrap: wrap; justify-content: center; padding: 0 16px; }
-html:not(.motion) .run[aria-hidden] { display: none; }
-html:not(.motion) .run { flex-wrap: wrap; justify-content: center; row-gap: 14px; }
-
 /* The app: a real phone with a live screen, the first release, the waitlist */
 .app { padding: 100px 0; scroll-margin-top: 70px; }
 .app-grid { display: grid; gap: 40px; align-items: center; }
@@ -195,7 +182,22 @@ html:not(.motion) .run { flex-wrap: wrap; justify-content: center; row-gap: 14px
 .stats b { display: block; font-family: var(--serif); font-weight: 650; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1; }
 .stats span { color: var(--muted); font-size: .92rem; }
 
-footer { background: var(--chocolate); color: var(--sand); padding: 40px 0 52px; font-size: .92rem; }
+/* Finale: the golden key and a turning globe of the cities where our learners work */
+.finale { background: var(--chocolate); color: var(--ivory); padding: 90px 0 70px; overflow: hidden; }
+.finale-grid { display: grid; gap: 30px; align-items: center; }
+@media (min-width: 900px) { .finale-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+.finale-text { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
+.finale-key img { width: clamp(70px, 9vw, 120px); height: auto; filter: drop-shadow(0 18px 30px rgba(0,0,0,.45)); transform-origin: 50% 40%; will-change: transform; }
+.finale h2 { font-family: var(--serif); font-weight: 650; font-size: clamp(2.3rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -.015em; margin: 0; }
+.finale p { color: var(--sand); font-size: 1.12rem; margin: 18px 0 0; max-width: 34ch; }
+.finale .btn-line { color: var(--ivory); }
+.globe { position: relative; width: 100%; aspect-ratio: 1; max-width: 560px; justify-self: center; cursor: grab; touch-action: pan-y; }
+.globe:active { cursor: grabbing; }
+.globe canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.g-label { position: absolute; left: 0; top: 0; opacity: 0; pointer-events: none; white-space: nowrap; font: 700 .82rem/1 var(--sans); letter-spacing: .02em; color: var(--ink); background: var(--kami); padding: 6px 10px; border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.35); }
+@media (max-width: 599px) { .finale { padding: 70px 0 40px; } .finale-text { grid-template-columns: 1fr; } .finale-key img { width: 64px; } .g-label { font-size: .72rem; padding: 5px 8px; } }
+
+footer { background: var(--chocolate); color: var(--sand); padding: 40px 0 52px; border-top: 1px solid rgba(185,168,143,.18); font-size: .92rem; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; }
 footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; }
 footer a { text-decoration: none; } footer a:hover { color: var(--ivory); }
