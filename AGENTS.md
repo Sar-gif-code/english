@@ -31,7 +31,7 @@
 - `hreflang`: на главной — `en`, `ru`, `x-default`; `/ru` ссылается обратно на `/`;
 - Open Graph и Twitter-теги, `og:image` (`/assets/home/og.jpg`);
 - JSON-LD разметку schema.org (`EducationalOrganization`, `WebSite`);
-- H1 на главной: «English for real estate agents»;
+- H1 на главной: «English for Real Estate» (изменён по просьбе Сары 5 ноября; фраза «real estate agents» стоит в подзаголовке, title и description);
 - адреса страниц (URL);
 - `sitemap.xml`, `robots.txt`, `_redirects`;
 - тег Google Analytics;
@@ -55,7 +55,7 @@
 - Поля: имя, email, родной язык (Russian / Spanish / Turkish / Other + своё поле), рынок (USA / UAE / Other).
 - После отправки PDF скачивается прямо на странице, без письма: `downloads/free-flashcards-{ru,es,tr}.pdf`.
 - Данные уходят в Google-таблицу «English for Real Estate - Waitlist» через Apps Script. Адрес — `SHEET_ENDPOINT` в `script.js`. **Не менять адрес и названия полей.** Колонки: date, name, email, language, language_other, market, level, form, source, page_lang.
-- Источник трафика пишется из `?utm_source=` или `?src=` в ссылке. У кнопок на главной свои метки: `home`, `home-levels`, `home-final`, `home-cards`, `home-footer`, `level-test`.
+- Источник трафика пишется из `?utm_source=` или `?src=` в ссылке. У кнопок на главной свои метки: `home`, `home-header`, `home-menu`, `home-levels`, `home-final`, `home-cards`, `home-footer`, `level-test`.
 
 ### Уровни
 - Шесть уровней, названия строго такие: **A0 Foundation, A1 Beginner, A2 Elementary, B1 Intermediate, B2 Upper-Intermediate, C1 Advanced.**
