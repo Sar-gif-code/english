@@ -21,7 +21,7 @@
   function headerState() {
     const rw = worldScene.getBoundingClientRect(), dark = rw.top <= 60 && rw.bottom > 60;
     topBar.classList.toggle("dark", dark);
-    topBar.classList.toggle("solid", !dark && (motion ? rw.bottom <= 60 : scrollY > innerHeight * .8));
+    topBar.classList.toggle("solid", !dark && (motion ? filmScene.getBoundingClientRect().bottom <= 60 : scrollY > innerHeight * .8));
   }
   const motion = document.documentElement.classList.contains("motion");
   addEventListener("scroll", headerState, { passive: true });
@@ -32,7 +32,7 @@
   const A = "/assets/home/";
   const top = $("#top"), scene = $("#film-scene"), world = $("#world");
   const film = $("#film"), ctx = film.getContext("2d");
-  const inside = $("#inside"), car = $("#car"), tower = $("#tower");
+  const light = $("#light");
   const cities = [...document.querySelectorAll(".city")], names = [...document.querySelectorAll(".city-name")];
 
   // V1 (key leaves her hand) and V2 (door A0) as frame sequences: smooth scrubbing on every phone
@@ -76,7 +76,7 @@
   // Smooth follow: the film eases toward the scroll position instead of jumping with it
   let tp = 0, dp = 0, tw = 0, dw = 0, running = false;
   const follow = small ? .2 : .12;
-  function readScroll() { tp = clamp(prog(scene) * 1100 / 960); tw = prog(world); }
+  function readScroll() { tp = prog(scene); tw = prog(world); }
   function kick() { if (!running) { running = true; requestAnimationFrame(tick); } }
   function tick() {
     readScroll();
@@ -88,29 +88,21 @@
   }
 
   function render(p, pw) {
-    // Mrs. Kami live (V0) → V1, the key leaves her hand → dissolve → V2, the key opens door A0
-    $(".hero-bg").style.transform = `scale(${lerp(1, 1.04, seg(p, 0, .09))})`;
-    $(".hero-text").style.transform = `translateY(${-50 * ease(seg(p, 0, .09))}px)`;
+    // Mrs. Kami live (V0) → V1, the key leaves her hand → dissolve → V2, the key opens door A0 → light
+    $(".hero-bg").style.transform = `scale(${lerp(1, 1.04, seg(p, 0, .1))})`;
+    $(".hero-text").style.transform = `translateY(${-50 * ease(seg(p, 0, .1))}px)`;
     $(".hero-text").style.opacity = 1 - seg(p, .02, .08);
-    $(".hero-text").style.visibility = p > .09 ? "hidden" : "visible";
-    const fade = seg(p, .055, .075);
+    $(".hero-text").style.visibility = p > .1 ? "hidden" : "visible";
+    const fade = seg(p, .06, .085);
     film.style.opacity = fade;
     if (hero) { if (fade > .01 && !hero.paused) hero.pause(); else if (fade <= .01 && hero.paused && !hero.ended) hero.play().catch(() => {}); }
     let blur = 0;
-    if (p < .51) { draw(0, seg(p, .09, .48)); blur = seg(p, .48, .51) * 12; }
-    else { draw(1, seg(p, .54, .8)); blur = (1 - seg(p, .51, .55)) * 12 + seg(p, .8, .86) * 6; }
+    if (p < .55) { draw(0, seg(p, .1, .52)); blur = seg(p, .52, .55) * 12; }
+    else { draw(1, seg(p, .58, .88)); blur = (1 - seg(p, .55, .59)) * 12; }
     film.style.filter = blur ? `blur(${blur}px)` : "none";
-    $("#cap-key").style.opacity = seg(p, .33, .39) * (1 - seg(p, .46, .5));
-
-    // Inside the open door: the levels appear and light up from A0
-    const inn = seg(p, .81, .86);
-    inside.style.opacity = inn;
-    inside.style.transform = `scale(${lerp(1.06, 1, inn)})`;
-    inside.classList.toggle("on", inn > .5);
-    const lit = Math.max(inn > .5 ? 1 : 0, Math.round(seg(p, .86, .93) * floors.length));
-    floors.forEach((f, i) => f.classList.toggle("lit", i < lit));
-    const tr = tower.getBoundingClientRect(), lf = floors[Math.max(0, lit - 1)].getBoundingClientRect();
-    car.style.top = (lit ? lf.top - tr.top + lf.height / 2 - 15 : tr.height - 30) + "px";
+    $("#cap-key").style.opacity = seg(p, .34, .4) * (1 - seg(p, .48, .52));
+    // The door opens into light, and the light becomes the levels section below
+    light.style.opacity = ease(seg(p, .86, .925));
 
     // Unlock the world: cities one after another, then the final line
     const n = cities.length, cp = seg(pw, 0, .7) * n;
