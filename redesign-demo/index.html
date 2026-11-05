@@ -52,7 +52,10 @@
     .tag { position: absolute; right: 12px; bottom: 12px; z-index: 30; font: 600 .72rem/1 var(--sans); padding: 7px 10px; border-radius: 999px; background: rgba(17,17,17,.72); color: #fff; letter-spacing: .02em; }
 
     /* Scene 1 — Meet Mrs. Kami */
-    #s1 { height: 460svh; }
+    #s1 { height: 820svh; }
+    #s1 .whiteout { z-index: 4; }
+    @media (min-width: 900px) { #s1 .caption { top: auto; bottom: 12vh; left: 6vw; right: auto; text-align: left; max-width: 22ch; } }
+    #cap3 { z-index: 3; color: var(--ivory); text-shadow: 0 2px 30px rgba(33,22,15,.6); }
     #film { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
     #s1 .caption { top: 15vh; bottom: auto; z-index: 3; color: var(--ink); text-shadow: 0 2px 24px rgba(246,241,232,.9); }
     #s1 .stage { display: grid; align-items: center; }
@@ -187,26 +190,9 @@
       </div>
       <canvas id="film" aria-hidden="true"></canvas>
       <p class="caption" id="cap2">Forty years. Four continents.<br>One key.</p>
-      <span class="tag">Real: I2 + V0 + V1 · next: V2 (door)</span>
-    </div>
-  </section>
-
-  <!-- Scene 3 -->
-  <section class="scene" id="s3" aria-label="Unlock the first door">
-    <div class="stage">
-      <div class="hall" id="hall">
-        <div class="doorway" id="doorway">
-          <div class="light"></div>
-          <div class="leaf l" id="leafL"></div>
-          <div class="leaf r" id="leafR"></div>
-          <div class="plate" id="plate">A0</div>
-          <div class="keyhole" id="keyhole"></div>
-          <div class="frame"></div>
-        </div>
-      </div>
-      <div class="whiteout" id="whiteout"></div>
       <p class="caption" id="cap3">Level A0. Start from zero.</p>
-      <span class="tag">Placeholder → video V2 (door A0)</span>
+      <div class="whiteout" id="whiteout"></div>
+      <span class="tag">Real: I2 + V0 + V1 + I4 + V2 · next: V3 (tower)</span>
     </div>
   </section>
 
@@ -268,24 +254,6 @@
   </section>
 </main>
 
-<div id="key" aria-hidden="true"><div class="k3d" id="k3d">
-  <svg class="back" viewBox="0 0 60 180"><use href="#keyshape"/></svg>
-  <svg class="front" viewBox="0 0 60 180"><use href="#keyshape"/></svg>
-</div></div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1BF"/><stop offset=".35" stop-color="#E7B321"/><stop offset=".6" stop-color="#FFE38A"/><stop offset="1" stop-color="#A9780F"/></linearGradient>
-    <g id="keyshape">
-      <path d="M30 4 L56 26 L56 58 L4 58 L4 26 Z" fill="url(#g)"/>
-      <path d="M30 14 L46 28 L46 50 L14 50 L14 28 Z" fill="#21160F" opacity=".85"/>
-      <rect x="22" y="30" width="7" height="7" fill="url(#g)"/><rect x="31" y="30" width="7" height="7" fill="url(#g)"/>
-      <rect x="22" y="39" width="7" height="7" fill="url(#g)"/><rect x="31" y="39" width="7" height="7" fill="url(#g)"/>
-      <rect x="25" y="56" width="10" height="112" rx="3" fill="url(#g)"/>
-      <path d="M35 128 h14 v8 h-8 v8 h10 v8 h-16 z" fill="url(#g)"/><path d="M35 160 h10 v8 h-10 z" fill="url(#g)"/>
-    </g>
-  </defs>
-</svg>
-
 <footer><div class="wrap"><span>© 2026 English for Real Estate</span><nav aria-label="Footer"><a href="/vocabulary">Vocabulary</a><a href="/terms">Terms</a><a href="/phrases">Phrases</a><a href="/level-test">Level test</a><a href="/about">About</a><a href="/ru" hreflang="ru">Русский</a><a href="/privacy">Privacy</a></nav></div></footer>
 
 <script>
@@ -298,81 +266,57 @@
   const lerp = (a, b, t) => a + (b - a) * t;
   const prog = (el) => { const r = el.getBoundingClientRect(); return clamp(-r.top / (r.height - innerHeight)); };
 
-  const key = $("#key"), k3d = $("#k3d"), top = $("#top");
+  const top = $("#top");
   const floors = [...document.querySelectorAll(".floor")], car = $("#car"), tower = $("#tower");
   const cities = [...document.querySelectorAll(".city")], names = [...document.querySelectorAll(".city-name")];
 
-  // V1 as a frame sequence on canvas (smooth scrubbing on every phone)
+  // V1 (key leaves her hand) and V2 (door A0) as frame sequences on one canvas — smooth scrubbing on every phone
   const hero = document.getElementById("hero");
   const film = document.getElementById("film"), ctx = film.getContext("2d");
-  const small0 = innerWidth < 900, N = small0 ? 60 : 75, dir = small0 ? "v1m" : "v1d";
-  const imgs = new Array(N); let lastIdx = -1;
-  function load(i) { if (imgs[i]) return imgs[i]; const im = new Image(); im.decoding = "async"; im.src = `${dir}/${String(i + 1).padStart(3, "0")}.webp`; im.onload = () => { if (i === lastIdx) { lastIdx = -1; frame(); } }; return imgs[i] = im; }
-  function preload() { load(0); load(N - 1); for (let i = 1; i < N - 1; i++) load(i); }
-  function size() { const r = devicePixelRatio > 1 ? 1.5 : 1; film.width = innerWidth * r; film.height = innerHeight * r; lastIdx = -1; }
-  function drawFilm(t) {
-    let i = Math.round(t * (N - 1));
-    while (i > 0 && !(imgs[i] && imgs[i].complete && imgs[i].naturalWidth)) i--;
-    const im = imgs[i]; if (!im || !im.complete || !im.naturalWidth) { load(0); return; }
-    if (i === lastIdx) return; lastIdx = i;
+  const small0 = innerWidth < 900;
+  const clips = [
+    { dir: small0 ? "v1m" : "v1d", n: small0 ? 60 : 75, px: small0 ? .58 : .5, imgs: [] },
+    { dir: small0 ? "v2m" : "v2d", n: 72, px: .5, imgs: [] }
+  ];
+  let last = "";
+  function load(c, i) { if (c.imgs[i]) return c.imgs[i]; const im = new Image(); im.decoding = "async"; im.src = `${c.dir}/${String(i + 1).padStart(3, "0")}.webp`; im.onload = () => { last = ""; requestAnimationFrame(frame); }; return c.imgs[i] = im; }
+  function preload() { clips.forEach((c) => { load(c, 0); load(c, c.n - 1); }); clips.forEach((c) => { for (let i = 1; i < c.n - 1; i++) load(c, i); }); }
+  function size() { const r = devicePixelRatio > 1 ? 1.5 : 1; film.width = innerWidth * r; film.height = innerHeight * r; last = ""; }
+  const ready = (im) => im && im.complete && im.naturalWidth;
+  function draw(k, t) {
+    const c = clips[k];
+    let i = Math.round(t * (c.n - 1));
+    while (i > 0 && !ready(c.imgs[i])) i--;
+    const im = c.imgs[i]; if (!ready(im)) { load(c, 0); return; }
+    const id = k + ":" + i; if (id === last) return; last = id;
     const cw = film.width, ch = film.height, sc = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     const w = im.naturalWidth * sc, h = im.naturalHeight * sc;
-    const px = innerWidth < 900 ? .58 : .5;
-    ctx.drawImage(im, (cw - w) * px, (ch - h) * .3, w, h);
+    ctx.drawImage(im, (cw - w) * c.px, (ch - h) * .3, w, h);
   }
   size();
   addEventListener("resize", size);
   addEventListener("load", preload);
 
   function frame() {
-    const vw = innerWidth, vh = innerHeight, small = vw < 900;
-    const p1 = prog($("#s1")), p3 = prog($("#s3")), p4 = prog($("#s4")), p5 = prog($("#s5"));
-    const r1 = $("#s1").getBoundingClientRect(), r3 = $("#s3").getBoundingClientRect(), r4 = $("#s4").getBoundingClientRect();
+    const p1 = prog($("#s1")), p4 = prog($("#s4")), p5 = prog($("#s5"));
+    const r4 = $("#s4").getBoundingClientRect();
 
-    // Scene 1: slow push-in on Mrs. Kami, headline drifts up
-    // Scene 1–2 as one shot: live loop (V0) → crossfade into V1 → scroll scrubs V1 (key leaves her hand)
-    $("#arch").style.transform = `scale(${lerp(1, 1.04, seg(p1, 0, .16))})`;
-    $(".s1-text").style.transform = `translateY(${-50 * ease(seg(p1, 0, .16))}px)`;
-    $(".s1-text").style.opacity = 1 - seg(p1, .04, .14);
-    const fade = seg(p1, .1, .135);
-    $("#film").style.opacity = fade;
+    // One continuous shot: live loop (V0) → V1, the key leaves her hand → dissolve → V2, the key opens door A0 → light
+    $("#arch").style.transform = `scale(${lerp(1, 1.04, seg(p1, 0, .09))})`;
+    $(".s1-text").style.transform = `translateY(${-50 * ease(seg(p1, 0, .09))}px)`;
+    $(".s1-text").style.opacity = 1 - seg(p1, .02, .08);
+    const fade = seg(p1, .055, .075);
+    film.style.opacity = fade;
     if (hero) { if (fade > .01 && !hero.paused) hero.pause(); else if (fade <= .01 && hero.paused) hero.play().catch(() => {}); }
-    drawFilm(seg(p1, .16, .92));
-    $("#film").style.filter = `blur(${seg(p1, .94, 1) * 8}px)`;
-    $("#cap2").style.opacity = seg(p1, .6, .72) * (1 - seg(p1, .9, .98));
 
-    // The key: appears in her hand (end of scene 1), floats to centre and spins (scene 2), flies to the keyhole and turns (scene 3)
-    const arch = $("#arch").getBoundingClientRect();
-    const sc = Math.max(vw / 1920, vh / 1080), w = 1920 * sc, hgt = 1080 * sc;
-    const ox = (vw - w) * (small ? .58 : .5), oy = (vh - hgt) * .3;
-    const hand = { x: ox + w * .51, y: arch.top + oy + hgt * .36 };
-    const centre = { x: vw / 2, y: vh * .44 };
-    const hole = $("#keyhole").getBoundingClientRect();
-    const holeP = { x: hole.left + hole.width / 2, y: hole.top + hole.height / 2 - (small ? 40 : 52) };
-    let x = hand.x, y = hand.y, s = .55, ry = 0, rz = 0, op = 0;
+    let blur = 0;
+    if (p1 < .51) { draw(0, seg(p1, .09, .48)); blur = seg(p1, .48, .51) * 12; }
+    else { draw(1, seg(p1, .54, .93)); blur = (1 - seg(p1, .51, .55)) * 12; }
+    film.style.filter = `blur(${blur}px)`;
 
-    if (r3.top > 0) {                                    // scenes 1–2: the key lives inside the video
-      op = 0;
-    } else {                                             // scene 3
-      op = 1 - seg(p3, .62, .72);
-      const t = ease(seg(p3, 0, .32));
-      x = lerp(centre.x, holeP.x, t); y = lerp(centre.y, holeP.y, t);
-      s = lerp(small ? 1.5 : 1.9, small ? .55 : .6, t);
-      ry = lerp(720, 720 + 90, t) % 360;
-      rz = 90 * ease(seg(p3, .36, .5));                  // the turn in the lock
-    }
-    key.style.opacity = op;
-    key.style.transform = `translate(-50%, -50%) translate(${x - vw / 2}px, ${y - vh / 2}px) scale(${s})`;
-    k3d.style.transform = `rotateZ(${rz}deg) rotateY(${ry}deg)`;
-
-    // Scene 3: doors open, camera walks through, light fills the screen
-    const open = ease(seg(p3, .5, .72));
-    $("#leafL").style.transform = `rotateY(${-105 * open}deg)`;
-    $("#leafR").style.transform = `rotateY(${105 * open}deg)`;
-    $("#plate").style.opacity = $("#keyhole").style.opacity = 1 - open;
-    $("#hall").style.transform = `scale(${lerp(1, 4.2, ease(seg(p3, .7, .95)))})`;
-    $("#whiteout").style.opacity = seg(p3, .82, .97);
-    $("#cap3").style.opacity = seg(p3, .5, .62) * (1 - seg(p3, .78, .86));
+    $("#cap2").style.opacity = seg(p1, .33, .39) * (1 - seg(p1, .46, .5));
+    $("#cap3").style.opacity = seg(p1, .8, .86) * (1 - seg(p1, .93, .97));
+    $("#whiteout").style.opacity = seg(p1, .93, 1);
 
     // Scene 4: the lift goes up, floors light from A0 to C1
     const lit = Math.round(seg(p4, .08, .85) * floors.length);
