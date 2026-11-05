@@ -80,7 +80,7 @@
     <div class="stage">
       <div class="hero">
         <div class="hero-bg">
-          <video id="hero" autoplay muted loop playsinline preload="auto" poster="/assets/home/kami-poster.jpg" aria-label="Mrs. Kami in her golden-yellow suit, holding a golden house key">
+          <video id="hero" autoplay muted playsinline preload="auto" poster="/assets/home/kami-poster.jpg" aria-label="Mrs. Kami in her golden-yellow suit, holding a golden house key">
             <source src="/assets/home/kami-hero-m.webm" type="video/webm" media="(max-width: 899px)">
             <source src="/assets/home/kami-hero-m.mp4" type="video/mp4" media="(max-width: 899px)">
             <source src="/assets/home/kami-hero.webm" type="video/webm">
@@ -123,7 +123,7 @@
 
   <section id="world" aria-label="Unlock the world">
     <div class="stage">
-      <div class="city"><img src="/assets/home/city-dubai.jpg" alt="Palm Jumeirah villas and the Dubai skyline at sunset" loading="lazy"></div>
+      <div class="city"><img src="/assets/home/city-dubai.jpg" alt="Palm Jumeirah villas and the Dubai skyline at sunset" decoding="async"></div>
       <div class="city"><img src="/assets/home/city-newyork.jpg" alt="Manhattan rooftops at sunset" loading="lazy"></div>
       <div class="city"><img src="/assets/home/city-london.jpg" alt="London skyline over the Thames at sunset" loading="lazy"></div>
       <div class="city"><img src="/assets/home/city-cyprus.jpg" alt="White villas by the sea in Cyprus" loading="lazy"></div>
@@ -187,6 +187,7 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="/home.js" defer></script>
 </body>
 </html>

@@ -41,35 +41,53 @@
     { dir: small ? "v1m" : "v1d", n: small ? 60 : 75, px: small ? .58 : .5, imgs: [] },
     { dir: small ? "v2m" : "v2d", n: 72, px: .5, imgs: [] }
   ];
-  let last = "";
   const ready = (im) => im && im.complete && im.naturalWidth;
   function load(c, i) {
     if (c.imgs[i]) return c.imgs[i];
     const im = new Image(); im.decoding = "async";
     im.src = `${A}${c.dir}/${String(i + 1).padStart(3, "0")}.webp`;
-    im.onload = () => { last = ""; requestAnimationFrame(frame); };
+    im.onload = () => { lastDraw = ""; kick(); };
     return (c.imgs[i] = im);
   }
   function preload() {
     clips.forEach((c) => { load(c, 0); load(c, c.n - 1); });
     clips.forEach((c) => { for (let i = 1; i < c.n - 1; i++) load(c, i); });
   }
-  function size() { const r = devicePixelRatio > 1 ? 1.5 : 1; film.width = innerWidth * r; film.height = innerHeight * r; last = ""; }
-  function draw(k, t) {
-    const c = clips[k];
-    let i = Math.round(t * (c.n - 1));
-    while (i > 0 && !ready(c.imgs[i])) i--;
-    const im = c.imgs[i]; if (!ready(im)) { load(c, 0); return; }
-    const id = k + ":" + i; if (id === last) return; last = id;
+  function size() { const r = devicePixelRatio > 1 ? 1.5 : 1; film.width = innerWidth * r; film.height = innerHeight * r; lastDraw = ""; }
+  function nearest(c, i) { let j = i; while (j > 0 && !ready(c.imgs[j])) j--; return ready(c.imgs[j]) ? j : -1; }
+  function paint(c, im, alpha) {
     const cw = film.width, ch = film.height, sc = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     const w = im.naturalWidth * sc, h = im.naturalHeight * sc;
+    ctx.globalAlpha = alpha;
     ctx.drawImage(im, (cw - w) * c.px, (ch - h) * .3, w, h);
+    ctx.globalAlpha = 1;
+  }
+  // Draw between two neighbouring frames, blending them, so the motion has no steps
+  let lastDraw = "";
+  function draw(k, t) {
+    const c = clips[k], f = t * (c.n - 1), i = Math.floor(f), a = f - i;
+    const i0 = nearest(c, i); if (i0 < 0) { load(c, 0); return; }
+    const i1 = Math.min(c.n - 1, i + 1), next = i0 === i && a > .02 && ready(c.imgs[i1]) ? i1 : -1;
+    const id = `${k}:${i0}:${next}:${Math.round(a * 20)}`; if (id === lastDraw) return; lastDraw = id;
+    paint(c, c.imgs[i0], 1);
+    if (next >= 0) paint(c, c.imgs[next], a);
   }
 
-  function frame() {
-    // the last part of the film is a calm pause to read the levels
-    const p = clamp(prog(scene) * 1100 / 960), pw = prog(world);
+  // Smooth follow: the film eases toward the scroll position instead of jumping with it
+  let tp = 0, dp = 0, tw = 0, dw = 0, running = false;
+  const follow = small ? .2 : .12;
+  function readScroll() { tp = clamp(prog(scene) * 1100 / 960); tw = prog(world); }
+  function kick() { if (!running) { running = true; requestAnimationFrame(tick); } }
+  function tick() {
+    readScroll();
+    dp += (tp - dp) * follow; dw += (tw - dw) * follow;
+    if (Math.abs(tp - dp) < .0004) dp = tp;
+    if (Math.abs(tw - dw) < .0004) dw = tw;
+    render(dp, dw);
+    if (dp !== tp || dw !== tw) requestAnimationFrame(tick); else running = false;
+  }
 
+  function render(p, pw) {
     // Mrs. Kami live (V0) → V1, the key leaves her hand → dissolve → V2, the key opens door A0
     $(".hero-bg").style.transform = `scale(${lerp(1, 1.04, seg(p, 0, .09))})`;
     $(".hero-text").style.transform = `translateY(${-50 * ease(seg(p, 0, .09))}px)`;
@@ -77,7 +95,7 @@
     $(".hero-text").style.visibility = p > .09 ? "hidden" : "visible";
     const fade = seg(p, .055, .075);
     film.style.opacity = fade;
-    if (hero) { if (fade > .01 && !hero.paused) hero.pause(); else if (fade <= .01 && hero.paused) hero.play().catch(() => {}); }
+    if (hero) { if (fade > .01 && !hero.paused) hero.pause(); else if (fade <= .01 && hero.paused && !hero.ended) hero.play().catch(() => {}); }
     let blur = 0;
     if (p < .51) { draw(0, seg(p, .09, .48)); blur = seg(p, .48, .51) * 12; }
     else { draw(1, seg(p, .54, .8)); blur = (1 - seg(p, .51, .55)) * 12 + seg(p, .8, .86) * 6; }
@@ -98,7 +116,7 @@
     const n = cities.length, cp = seg(pw, 0, .7) * n;
     cities.forEach((c, i) => {
       const local = cp - i;
-      const o = clamp(local < 0 ? 0 : local < 1 ? Math.min(local * 3, 1) : 1 - (local - 1) * 3);
+      const o = i === 0 && local < 1 ? 1 : clamp(local < 0 ? 0 : local < 1 ? Math.min(local * 3, 1) : 1 - (local - 1) * 3);
       c.style.opacity = i === n - 1 && local >= 1 ? 1 : o;
       c.style.transform = `scale(${lerp(1.12, 1, clamp(local))})`;
     });
@@ -111,13 +129,15 @@
   }
 
   size();
-  let ticking = false;
-  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; frame(); }); } }, { passive: true });
-  addEventListener("resize", () => { size(); frame(); });
-  // frames load after the first screen: on the first scroll or after a short pause, whichever comes first
-  let started = false;
-  const start = () => { if (started) return; started = true; preload(); };
-  addEventListener("scroll", start, { once: true, passive: true });
-  addEventListener("load", () => { setTimeout(start, 2500); frame(); });
-  frame();
+  addEventListener("scroll", kick, { passive: true });
+  addEventListener("resize", () => { size(); readScroll(); dp = tp; dw = tw; render(dp, dw); });
+  addEventListener("load", () => { preload(); kick(); });
+
+  // Smooth wheel scrolling on computers (touch keeps the phone's own natural scrolling)
+  if (window.Lenis && matchMedia("(pointer: fine)").matches) {
+    const lenis = new Lenis({ lerp: .1, smoothWheel: true });
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+  readScroll(); dp = tp; dw = tw; render(dp, dw);
 })();
