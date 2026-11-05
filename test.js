@@ -23,12 +23,12 @@ const QUESTIONS = [
 ];
 
 const LEVELS = {
-  A0: { name: "Foundation", color: "var(--navy)", text: "You’re starting from zero — perfect. You’ll learn English sounds and reading, how to introduce yourself, numbers and prices, and your first real estate words." },
-  A1: { name: "Beginner", color: "var(--teal)", text: "You know a little English. Next: your first words for work — greetings, numbers and prices, property types and rooms." },
-  A2: { name: "Elementary", color: "#2BB673", text: "You know the basics. Next step: simple conversations and messages — arranging viewings, describing the area, WhatsApp replies." },
-  B1: { name: "Intermediate", color: "var(--yellow)", text: "You can communicate. Now let’s make you confident running a viewing on your own, answering questions and writing client emails." },
-  B2: { name: "Upper-Intermediate", color: "var(--coral)", text: "Strong level! Focus on negotiations, handling objections and explaining mortgages and contract terms." },
-  C1: { name: "Advanced", color: "#7C5CFF", text: "Excellent! Polish your presentations, complex negotiations and investment and legal vocabulary." }
+  A0: { name: "Foundation", color: "#C28C08", text: "You’re starting from zero — perfect. You’ll learn English sounds and reading, how to introduce yourself, numbers and prices, and your first real estate words." },
+  A1: { name: "Beginner", color: "#B07A10", text: "You know a little English. Next: your first words for work — greetings, numbers and prices, property types and rooms." },
+  A2: { name: "Elementary", color: "#9A6A1C", text: "You know the basics. Next step: simple conversations and messages — arranging viewings, describing the area, WhatsApp replies." },
+  B1: { name: "Intermediate", color: "#7E5528", text: "You can communicate. Now let’s make you confident running a viewing on your own, answering questions and writing client emails." },
+  B2: { name: "Upper-Intermediate", color: "#5A3C22", text: "Strong level! Focus on negotiations, handling objections and explaining mortgages and contract terms." },
+  C1: { name: "Advanced", color: "#21160F", text: "Excellent! Polish your presentations, complex negotiations and investment and legal vocabulary." }
 };
 const ORDER = ["A1", "A2", "B1", "B2", "C1"];
 
