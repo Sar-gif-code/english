@@ -175,9 +175,9 @@ a { color: inherit; }
 .p-series { background: var(--chocolate); color: var(--ivory); } .p-series p { color: var(--sand); }
 .p-series .follow { color: var(--ivory); font-weight: 700; margin: 18px 0 0; }
 .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-.soc { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 999px; background: var(--kami); color: var(--ink); font-weight: 700; text-decoration: none; transition: transform .15s, background .2s; }
-.soc:hover { background: #F0C23A; transform: translateY(-2px); }
-.soc svg { width: 20px; height: 20px; display: block; }
+.soc { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px 0 8px; border-radius: 999px; background: var(--ivory); color: var(--ink); font-weight: 700; text-decoration: none; transition: transform .15s, background .2s; }
+.soc:hover { background: #fff; transform: translateY(-2px); }
+.soc svg { width: 32px; height: 32px; display: block; }
 .author { padding-top: 0; }
 .author-in { border-top: 1px solid var(--champagne); padding-top: 48px; display: grid; gap: 24px; }
 @media (min-width: 900px) { .author-in { grid-template-columns: 1.2fr 1fr; align-items: end; } }
